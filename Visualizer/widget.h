@@ -19,5 +19,17 @@ public:
 private:
     Ui::Widget *ui;
     QGraphicsScene *visualizingScene;
+
+    void createRectangles();
+
+    int noOfRectangles;
+
+    std::vector<QGraphicsRectItem*> rectangles;
+    std::vector<double> rectHeight;
+    double rectWidth;
+
+    double sceneHeight;
+    double sceneWidth;
+
 };
 #endif // WIDGET_H

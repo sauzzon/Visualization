@@ -12,7 +12,6 @@
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QGraphicsView>
-#include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -20,26 +19,20 @@ QT_BEGIN_NAMESPACE
 class Ui_Widget
 {
 public:
-    QWidget *horizontalLayoutWidget;
-    QHBoxLayout *horizontalLayout;
     QGraphicsView *visualizingBackground;
 
     void setupUi(QWidget *Widget)
     {
         if (Widget->objectName().isEmpty())
             Widget->setObjectName(QString::fromUtf8("Widget"));
-        Widget->resize(800, 600);
-        horizontalLayoutWidget = new QWidget(Widget);
-        horizontalLayoutWidget->setObjectName(QString::fromUtf8("horizontalLayoutWidget"));
-        horizontalLayoutWidget->setGeometry(QRect(60, 40, 681, 511));
-        horizontalLayout = new QHBoxLayout(horizontalLayoutWidget);
-        horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
-        horizontalLayout->setContentsMargins(0, 0, 0, 0);
-        visualizingBackground = new QGraphicsView(horizontalLayoutWidget);
+        Widget->resize(1374, 720);
+        visualizingBackground = new QGraphicsView(Widget);
         visualizingBackground->setObjectName(QString::fromUtf8("visualizingBackground"));
-
-        horizontalLayout->addWidget(visualizingBackground);
-
+        visualizingBackground->setGeometry(QRect(1, 1, 1000, 700));
+        visualizingBackground->setMinimumSize(QSize(1000, 700));
+        visualizingBackground->setFrameShape(QFrame::NoFrame);
+        visualizingBackground->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+        visualizingBackground->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
         retranslateUi(Widget);
 
