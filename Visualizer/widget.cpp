@@ -6,6 +6,10 @@ Widget::Widget(QWidget *parent)
     , ui(new Ui::Widget)
 {
     ui->setupUi(this);
+
+    visualizingScene = new QGraphicsScene(this);
+    ui->visualizingBackground->setScene(visualizingScene);
+
 }
 
 Widget::~Widget()
