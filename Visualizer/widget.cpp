@@ -49,33 +49,9 @@ void Widget::createRectangles(){
 // The sorted rectHeight is mixed
 
 //This is a random number engine class that generates pseudo-random numbers. (Found From StackOverflow)
-    if(!isSorted){
     auto rng = std::default_random_engine {};
     std::shuffle(rectHeight.begin(), rectHeight.end(), rng);
-    }
-
-
-//displaying the rectangles in scene
-    auto j = 0;
-    auto k = 0.0;
-
-//easiest way of iterating in std::vector
-    for(auto &p :rectangles)
-    {
-        p = new QGraphicsRectItem;
-        p->setRect(k, (sceneHeight - rectHeight[j]), rectWidth , rectHeight[j]);
-
-        if(isSorted)
-             p->setBrush(QBrush(QColor(0,250,0)));
-        else p->setBrush(QBrush(QColor(135,235,231)));
-
-        p->setPen(QPen(QColor(0,0,0)));
-
-        visualizingScene->addItem(p);
-
-        j++;
-        k += rectWidth;
-    }
+    updateDisplay();
 }
 
 
@@ -89,14 +65,62 @@ void Widget::on_slider_valueChanged(int value)
 {
     ui->label->setText("Number Of Elements = "+ QString::number(value));
     noOfRectangles = value;
-    isSorted = false;
     rectHeight.clear();
     createRectangles();
 }
 
 void Widget::on_pushButton_clicked()
 {
-    isSorted = true;
-    rectHeight.clear();
-    createRectangles();
+    selectionSort();
+}
+size_t Widget::findMinimum(size_t startingIndex)
+{
+    int min=rectHeight.at(startingIndex);
+    size_t minIndex =startingIndex;
+    for(size_t i=startingIndex;i<rectHeight.size();i++)
+    {
+        if(rectHeight.at(i)<min)
+        {
+            minIndex=i;
+            min=rectHeight.at(i);
+        }
+    }
+    return minIndex;
+}
+void Widget::selectionSort()
+{
+    for(size_t i=0;i<rectHeight.size();i++)
+    {
+        size_t minIndex = findMinimum(i);
+        std::swap(rectHeight[i],rectHeight[minIndex]);
+        visualizingScene->clear();
+        Sleep(10);
+        updateDisplay();
+    }
+
+}
+void Widget::updateDisplay()
+{
+    //displaying the rectangles in scene
+        auto j = 0;
+        auto k = 0.0;
+
+    //easiest way of iterating in std::vector
+        for(auto &p :rectangles)
+        {
+            p = new QGraphicsRectItem;
+            p->setRect(k, (sceneHeight - rectHeight[j]), rectWidth , rectHeight[j]);
+
+            if(isSorted)
+                 p->setBrush(QBrush(QColor(0,250,0)));
+            else p->setBrush(QBrush(QColor(135,235,231)));
+
+            p->setPen(QPen(QColor(0,0,0)));
+
+            visualizingScene->addItem(p);
+
+            j++;
+            k += rectWidth;
+            std::cout<<k<<std::endl;
+        }
 }

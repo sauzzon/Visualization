@@ -32,12 +32,14 @@ private:
     std::vector<QGraphicsRectItem*> rectangles;
     std::vector<double> rectHeight;
     double rectWidth;
-
+    size_t findMinimum(size_t startingIndex);
     double sceneHeight;
     double sceneWidth;
 
     double heightDiff;
     bool isSorted;
+    void selectionSort();
+    void updateDisplay();
 
 };
 #endif // WIDGET_H
