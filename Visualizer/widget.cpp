@@ -1,6 +1,7 @@
 #include "widget.h"
 #include "ui_widget.h"
 #include<iostream>
+#include<random>
 
 Widget::Widget(QWidget *parent)
     : QWidget(parent)
@@ -42,6 +43,12 @@ void Widget::createRectangles(){
         height += heightDiff;
 
     }
+
+// The sorted rectHeight is mixed
+
+//This is a random number engine class that generates pseudo-random numbers. (Found From StackOverflow)
+    auto rng = std::default_random_engine {};
+    std::shuffle(rectHeight.begin(), rectHeight.end(), rng);
 
 
 //displaying the rectangles in scene
