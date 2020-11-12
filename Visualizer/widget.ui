@@ -51,7 +51,7 @@
     <number>10</number>
    </property>
    <property name="maximum">
-    <number>100</number>
+    <number>250</number>
    </property>
    <property name="singleStep">
     <number>10</number>
@@ -60,7 +60,10 @@
     <number>10</number>
    </property>
    <property name="value">
-    <number>50</number>
+    <number>125</number>
+   </property>
+   <property name="sliderPosition">
+    <number>125</number>
    </property>
    <property name="tracking">
     <bool>true</bool>
@@ -82,7 +85,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>Number Of Elements = 50</string>
+    <string>Number Of Elements = 125</string>
    </property>
   </widget>
   <widget class="QPushButton" name="pushButton">

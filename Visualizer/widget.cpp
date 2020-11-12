@@ -19,7 +19,7 @@ Widget::Widget(QWidget *parent)
     sceneWidth = ui->visualizingBackground->size().width()-50;
 
 //creating columns for sorting
-    noOfRectangles = 50;
+    noOfRectangles = 125;
     isSorted = false;
     createRectangles();
 
@@ -64,7 +64,11 @@ void Widget::createRectangles(){
     {
         p = new QGraphicsRectItem;
         p->setRect(k, (sceneHeight - rectHeight[j]), rectWidth , rectHeight[j]);
-        p->setBrush(QBrush(QColor(135,235,231)));
+
+        if(isSorted)
+             p->setBrush(QBrush(QColor(0,250,0)));
+        else p->setBrush(QBrush(QColor(135,235,231)));
+
         p->setPen(QPen(QColor(0,0,0)));
 
         visualizingScene->addItem(p);

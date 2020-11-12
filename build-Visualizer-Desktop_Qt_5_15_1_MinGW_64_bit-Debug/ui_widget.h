@@ -43,10 +43,11 @@ public:
         slider->setObjectName(QString::fromUtf8("slider"));
         slider->setGeometry(QRect(1110, 70, 181, 61));
         slider->setMinimum(10);
-        slider->setMaximum(100);
+        slider->setMaximum(250);
         slider->setSingleStep(10);
         slider->setPageStep(10);
-        slider->setValue(50);
+        slider->setValue(125);
+        slider->setSliderPosition(125);
         slider->setTracking(true);
         slider->setOrientation(Qt::Horizontal);
         slider->setTickPosition(QSlider::NoTicks);
@@ -66,7 +67,7 @@ public:
     void retranslateUi(QWidget *Widget)
     {
         Widget->setWindowTitle(QCoreApplication::translate("Widget", "Widget", nullptr));
-        label->setText(QCoreApplication::translate("Widget", "Number Of Elements = 50", nullptr));
+        label->setText(QCoreApplication::translate("Widget", "Number Of Elements = 125", nullptr));
         pushButton->setText(QCoreApplication::translate("Widget", "Click to Sort ", nullptr));
     } // retranslateUi
 
