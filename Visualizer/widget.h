@@ -19,6 +19,8 @@ public:
 private slots:
     void on_slider_valueChanged(int value);
 
+    void on_pushButton_clicked();
+
 private:
     Ui::Widget *ui;
     QGraphicsScene *visualizingScene;
@@ -35,6 +37,7 @@ private:
     double sceneWidth;
 
     double heightDiff;
+    bool isSorted;
 
 };
 #endif // WIDGET_H

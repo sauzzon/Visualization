@@ -20,7 +20,9 @@ Widget::Widget(QWidget *parent)
 
 //creating columns for sorting
     noOfRectangles = 50;
+    isSorted = false;
     createRectangles();
+
 }
 
 void Widget::createRectangles(){
@@ -47,8 +49,10 @@ void Widget::createRectangles(){
 // The sorted rectHeight is mixed
 
 //This is a random number engine class that generates pseudo-random numbers. (Found From StackOverflow)
+    if(!isSorted){
     auto rng = std::default_random_engine {};
     std::shuffle(rectHeight.begin(), rectHeight.end(), rng);
+    }
 
 
 //displaying the rectangles in scene
@@ -79,8 +83,16 @@ Widget::~Widget()
 
 void Widget::on_slider_valueChanged(int value)
 {
-    ui->label->setText(QString::number(value));
+    ui->label->setText("Number Of Elements = "+ QString::number(value));
     noOfRectangles = value;
+    isSorted = false;
+    rectHeight.clear();
+    createRectangles();
+}
+
+void Widget::on_pushButton_clicked()
+{
+    isSorted = true;
     rectHeight.clear();
     createRectangles();
 }

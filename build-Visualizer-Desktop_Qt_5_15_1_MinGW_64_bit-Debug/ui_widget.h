@@ -13,6 +13,7 @@
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QGraphicsView>
 #include <QtWidgets/QLabel>
+#include <QtWidgets/QPushButton>
 #include <QtWidgets/QSlider>
 #include <QtWidgets/QWidget>
 
@@ -24,6 +25,7 @@ public:
     QGraphicsView *visualizingBackground;
     QSlider *slider;
     QLabel *label;
+    QPushButton *pushButton;
 
     void setupUi(QWidget *Widget)
     {
@@ -39,7 +41,7 @@ public:
         visualizingBackground->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
         slider = new QSlider(Widget);
         slider->setObjectName(QString::fromUtf8("slider"));
-        slider->setGeometry(QRect(1110, 40, 181, 61));
+        slider->setGeometry(QRect(1110, 70, 181, 61));
         slider->setMinimum(10);
         slider->setMaximum(100);
         slider->setSingleStep(10);
@@ -50,7 +52,11 @@ public:
         slider->setTickPosition(QSlider::NoTicks);
         label = new QLabel(Widget);
         label->setObjectName(QString::fromUtf8("label"));
-        label->setGeometry(QRect(1190, 130, 47, 13));
+        label->setGeometry(QRect(1130, 30, 141, 21));
+        pushButton = new QPushButton(Widget);
+        pushButton->setObjectName(QString::fromUtf8("pushButton"));
+        pushButton->setGeometry(QRect(1150, 220, 81, 51));
+        pushButton->setFlat(false);
 
         retranslateUi(Widget);
 
@@ -60,7 +66,8 @@ public:
     void retranslateUi(QWidget *Widget)
     {
         Widget->setWindowTitle(QCoreApplication::translate("Widget", "Widget", nullptr));
-        label->setText(QCoreApplication::translate("Widget", "50", nullptr));
+        label->setText(QCoreApplication::translate("Widget", "Number Of Elements = 50", nullptr));
+        pushButton->setText(QCoreApplication::translate("Widget", "Click to Sort ", nullptr));
     } // retranslateUi
 
 };
