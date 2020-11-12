@@ -16,6 +16,9 @@ public:
     Widget(QWidget *parent = nullptr);
     ~Widget();
 
+private slots:
+    void on_slider_valueChanged(int value);
+
 private:
     Ui::Widget *ui;
     QGraphicsScene *visualizingScene;
@@ -30,6 +33,8 @@ private:
 
     double sceneHeight;
     double sceneWidth;
+
+    double heightDiff;
 
 };
 #endif // WIDGET_H

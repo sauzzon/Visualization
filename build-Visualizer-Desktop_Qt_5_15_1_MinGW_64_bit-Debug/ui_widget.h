@@ -12,6 +12,8 @@
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QGraphicsView>
+#include <QtWidgets/QLabel>
+#include <QtWidgets/QSlider>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -20,6 +22,8 @@ class Ui_Widget
 {
 public:
     QGraphicsView *visualizingBackground;
+    QSlider *slider;
+    QLabel *label;
 
     void setupUi(QWidget *Widget)
     {
@@ -33,6 +37,20 @@ public:
         visualizingBackground->setFrameShape(QFrame::NoFrame);
         visualizingBackground->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
         visualizingBackground->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+        slider = new QSlider(Widget);
+        slider->setObjectName(QString::fromUtf8("slider"));
+        slider->setGeometry(QRect(1110, 40, 181, 61));
+        slider->setMinimum(10);
+        slider->setMaximum(100);
+        slider->setSingleStep(10);
+        slider->setPageStep(10);
+        slider->setValue(50);
+        slider->setTracking(true);
+        slider->setOrientation(Qt::Horizontal);
+        slider->setTickPosition(QSlider::NoTicks);
+        label = new QLabel(Widget);
+        label->setObjectName(QString::fromUtf8("label"));
+        label->setGeometry(QRect(1190, 130, 47, 13));
 
         retranslateUi(Widget);
 
@@ -42,6 +60,7 @@ public:
     void retranslateUi(QWidget *Widget)
     {
         Widget->setWindowTitle(QCoreApplication::translate("Widget", "Widget", nullptr));
+        label->setText(QCoreApplication::translate("Widget", "50", nullptr));
     } // retranslateUi
 
 };

@@ -14,28 +14,34 @@ Widget::Widget(QWidget *parent)
     visualizingScene->setBackgroundBrush(QBrush(QColor(220,220,220)));
 
 //height and width of main scene
-    sceneHeight = ui->visualizingBackground->size().height();
-    sceneWidth = ui->visualizingBackground->size().width();
+    sceneHeight = ui->visualizingBackground->size().height()-20;
+    sceneWidth = ui->visualizingBackground->size().width()-50;
 
 //creating columns for sorting
+    noOfRectangles = 50;
     createRectangles();
 }
 
 void Widget::createRectangles(){
 
-    noOfRectangles = 50;
+    visualizingScene->clear();
     rectWidth = sceneWidth / noOfRectangles;
 
 //resize sets the std::vector size
     rectangles.resize(noOfRectangles);
 
 //heightDiff is the difference in height between two consecutive sorted rectangles
-    double heightDiff = sceneHeight / noOfRectangles;
+    heightDiff = sceneHeight / noOfRectangles;
 
 //putting height of rectangles in vector called rectHeight
 //push_back is a method in std::vector to insert elements from back
-    for(int i = heightDiff; i <= sceneHeight; i += heightDiff)
-        rectHeight.push_back(i);
+
+        double height = heightDiff;
+    for(int i=0;i<noOfRectangles;i++){
+        rectHeight.push_back(height);
+        height += heightDiff;
+
+    }
 
 
 //displaying the rectangles in scene
@@ -63,3 +69,11 @@ Widget::~Widget()
     delete ui;
 }
 
+
+void Widget::on_slider_valueChanged(int value)
+{
+    ui->label->setText(QString::number(value));
+    noOfRectangles = value;
+    rectHeight.clear();
+    createRectangles();
+}
