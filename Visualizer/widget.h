@@ -37,7 +37,6 @@ private:
     double sceneWidth;
 
     double heightDiff;
-    bool isSorted;
     void selectionSort();
     void updateDisplay();
 

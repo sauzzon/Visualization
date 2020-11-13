@@ -20,14 +20,13 @@ Widget::Widget(QWidget *parent)
 
 //creating columns for sorting
     noOfRectangles = 125;
-    isSorted = false;
     createRectangles();
 
 }
 
 void Widget::createRectangles(){
 
-    visualizingScene->clear();
+
     rectWidth = sceneWidth / noOfRectangles;
 
 //resize sets the std::vector size
@@ -93,14 +92,20 @@ void Widget::selectionSort()
     {
         size_t minIndex = findMinimum(i);
         std::swap(rectHeight[i],rectHeight[minIndex]);
-        visualizingScene->clear();
-        Sleep(10);
+        Sleep(200);
         updateDisplay();
+
+
+ //Processes all pending events for the calling thread  until there are no more events to process.
+        QApplication::processEvents();
+
     }
+
 
 }
 void Widget::updateDisplay()
 {
+    visualizingScene->clear();
     //displaying the rectangles in scene
         auto j = 0;
         auto k = 0.0;
@@ -110,17 +115,14 @@ void Widget::updateDisplay()
         {
             p = new QGraphicsRectItem;
             p->setRect(k, (sceneHeight - rectHeight[j]), rectWidth , rectHeight[j]);
-
-            if(isSorted)
-                 p->setBrush(QBrush(QColor(0,250,0)));
-            else p->setBrush(QBrush(QColor(135,235,231)));
+            p->setBrush(QBrush(QColor(135,235,231)));
 
             p->setPen(QPen(QColor(0,0,0)));
 
             visualizingScene->addItem(p);
-
             j++;
             k += rectWidth;
-            std::cout<<k<<std::endl;
+
         }
+
 }
