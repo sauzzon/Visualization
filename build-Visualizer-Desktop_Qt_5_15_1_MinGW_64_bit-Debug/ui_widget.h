@@ -26,6 +26,7 @@ public:
     QSlider *slider;
     QLabel *label;
     QPushButton *pushButton;
+    QPushButton *resetButton;
 
     void setupUi(QWidget *Widget)
     {
@@ -58,6 +59,9 @@ public:
         pushButton->setObjectName(QString::fromUtf8("pushButton"));
         pushButton->setGeometry(QRect(1150, 220, 81, 51));
         pushButton->setFlat(false);
+        resetButton = new QPushButton(Widget);
+        resetButton->setObjectName(QString::fromUtf8("resetButton"));
+        resetButton->setGeometry(QRect(1150, 280, 81, 41));
 
         retranslateUi(Widget);
 
@@ -69,6 +73,7 @@ public:
         Widget->setWindowTitle(QCoreApplication::translate("Widget", "Widget", nullptr));
         label->setText(QCoreApplication::translate("Widget", "Number Of Elements = 125", nullptr));
         pushButton->setText(QCoreApplication::translate("Widget", "Click to Sort ", nullptr));
+        resetButton->setText(QCoreApplication::translate("Widget", "Reset", nullptr));
     } // retranslateUi
 
 };

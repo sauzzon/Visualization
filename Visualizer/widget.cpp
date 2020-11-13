@@ -50,7 +50,7 @@ void Widget::createRectangles(){
 //This is a random number engine class that generates pseudo-random numbers. (Found From StackOverflow)
     auto rng = std::default_random_engine {};
     std::shuffle(rectHeight.begin(), rectHeight.end(), rng);
-    updateDisplay();
+    updateDisplay(0,0,false);
 }
 
 
@@ -91,9 +91,10 @@ void Widget::selectionSort()
     for(size_t i=0;i<rectHeight.size();i++)
     {
         size_t minIndex = findMinimum(i);
+        updateDisplay(i,minIndex,true);
         std::swap(rectHeight[i],rectHeight[minIndex]);
         Sleep(200);
-        updateDisplay();
+
 
 
  //Processes all pending events for the calling thread  until there are no more events to process.
@@ -103,7 +104,7 @@ void Widget::selectionSort()
 
 
 }
-void Widget::updateDisplay()
+void Widget::updateDisplay(int red1,int red2,bool toColor)
 {
     visualizingScene->clear();
     //displaying the rectangles in scene
@@ -117,6 +118,11 @@ void Widget::updateDisplay()
             p->setRect(k, (sceneHeight - rectHeight[j]), rectWidth , rectHeight[j]);
             p->setBrush(QBrush(QColor(135,235,231)));
 
+            if((j ==red1 or j == red2) and toColor == true)
+                p->setBrush(QBrush(QColor(255,0,0)));
+            if((j<red1 and toColor ==true) or (j ==red1 and j==int(rectangles.size()-1)))
+                 p->setBrush(QBrush(QColor(0,255,0)));
+
             p->setPen(QPen(QColor(0,0,0)));
 
             visualizingScene->addItem(p);
@@ -125,4 +131,10 @@ void Widget::updateDisplay()
 
         }
 
+}
+
+void Widget::on_resetButton_clicked()
+{
+    rectHeight.clear();
+    createRectangles();
 }

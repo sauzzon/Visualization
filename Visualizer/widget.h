@@ -21,6 +21,8 @@ private slots:
 
     void on_pushButton_clicked();
 
+    void on_resetButton_clicked();
+
 private:
     Ui::Widget *ui;
     QGraphicsScene *visualizingScene;
@@ -38,7 +40,7 @@ private:
 
     double heightDiff;
     void selectionSort();
-    void updateDisplay();
+    void updateDisplay(int,int,bool);
 
 };
 #endif // WIDGET_H
