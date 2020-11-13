@@ -27,6 +27,8 @@ public:
     QLabel *label;
     QPushButton *pushButton;
     QPushButton *resetButton;
+    QLabel *delayLabel;
+    QSlider *delaySlider;
 
     void setupUi(QWidget *Widget)
     {
@@ -42,7 +44,7 @@ public:
         visualizingBackground->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
         slider = new QSlider(Widget);
         slider->setObjectName(QString::fromUtf8("slider"));
-        slider->setGeometry(QRect(1110, 70, 181, 61));
+        slider->setGeometry(QRect(1110, 70, 171, 31));
         slider->setMinimum(10);
         slider->setMaximum(250);
         slider->setSingleStep(10);
@@ -62,6 +64,17 @@ public:
         resetButton = new QPushButton(Widget);
         resetButton->setObjectName(QString::fromUtf8("resetButton"));
         resetButton->setGeometry(QRect(1150, 280, 81, 41));
+        delayLabel = new QLabel(Widget);
+        delayLabel->setObjectName(QString::fromUtf8("delayLabel"));
+        delayLabel->setGeometry(QRect(1170, 120, 81, 21));
+        delaySlider = new QSlider(Widget);
+        delaySlider->setObjectName(QString::fromUtf8("delaySlider"));
+        delaySlider->setGeometry(QRect(1110, 150, 171, 31));
+        delaySlider->setMinimum(25);
+        delaySlider->setMaximum(1000);
+        delaySlider->setSingleStep(25);
+        delaySlider->setValue(200);
+        delaySlider->setOrientation(Qt::Horizontal);
 
         retranslateUi(Widget);
 
@@ -74,6 +87,7 @@ public:
         label->setText(QCoreApplication::translate("Widget", "Number Of Elements = 125", nullptr));
         pushButton->setText(QCoreApplication::translate("Widget", "Click to Sort ", nullptr));
         resetButton->setText(QCoreApplication::translate("Widget", "Reset", nullptr));
+        delayLabel->setText(QCoreApplication::translate("Widget", "Delay = 200ms", nullptr));
     } // retranslateUi
 
 };

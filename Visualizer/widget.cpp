@@ -2,6 +2,11 @@
 #include "ui_widget.h"
 #include<iostream>
 #include<random>
+#define SKYBLUE QColor(135,235,231)
+#define GREY QColor(220,220,220)
+#define BLACK QColor(0,0,0)
+#define RED QColor(255,0,0)
+#define GREEN QColor(0,255,0)
 
 Widget::Widget(QWidget *parent)
     : QWidget(parent)
@@ -12,7 +17,7 @@ Widget::Widget(QWidget *parent)
 //creating visualizing scene and setting it to visualizing background
     visualizingScene = new QGraphicsScene(this);
     ui->visualizingBackground->setScene(visualizingScene);
-    visualizingScene->setBackgroundBrush(QBrush(QColor(220,220,220)));
+    visualizingScene->setBackgroundBrush(QBrush(GREY));
 
 //height and width of main scene
     sceneHeight = ui->visualizingBackground->size().height()-20;
@@ -21,6 +26,9 @@ Widget::Widget(QWidget *parent)
 //creating columns for sorting
     noOfRectangles = 125;
     createRectangles();
+
+//default value for delayTime
+    delayTime = 200;
 
 }
 
@@ -93,7 +101,7 @@ void Widget::selectionSort()
         size_t minIndex = findMinimum(i);
         updateDisplay(i,minIndex,true);
         std::swap(rectHeight[i],rectHeight[minIndex]);
-        Sleep(200);
+        Sleep(delayTime);
 
 
 
@@ -116,14 +124,14 @@ void Widget::updateDisplay(int red1,int red2,bool toColor)
         {
             p = new QGraphicsRectItem;
             p->setRect(k, (sceneHeight - rectHeight[j]), rectWidth , rectHeight[j]);
-            p->setBrush(QBrush(QColor(135,235,231)));
+            p->setBrush(QBrush(SKYBLUE));
 
             if((j ==red1 or j == red2) and toColor == true)
-                p->setBrush(QBrush(QColor(255,0,0)));
+                p->setBrush(QBrush(RED));
             if((j<red1 and toColor ==true) or (j ==red1 and j==int(rectangles.size()-1)))
-                 p->setBrush(QBrush(QColor(0,255,0)));
+                 p->setBrush(QBrush(GREEN));
 
-            p->setPen(QPen(QColor(0,0,0)));
+            p->setPen(QPen(BLACK));
 
             visualizingScene->addItem(p);
             j++;
@@ -137,4 +145,10 @@ void Widget::on_resetButton_clicked()
 {
     rectHeight.clear();
     createRectangles();
+}
+
+void Widget::on_delaySlider_valueChanged(int value)
+{
+    ui->delayLabel->setText("Delay = "+ QString::number(value)+"ms");
+    delayTime=value;
 }
