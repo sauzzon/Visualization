@@ -99,14 +99,17 @@ void Widget::selectionSort()
     for(size_t i=0;i<rectHeight.size();i++)
     {
         size_t minIndex = findMinimum(i);
+
         updateDisplay(i,minIndex,true);
-        std::swap(rectHeight[i],rectHeight[minIndex]);
+        //Processes all pending events for the calling thread  until there are no more events to process.
+        QApplication::processEvents();
         Sleep(delayTime);
 
+        std::swap(rectHeight[i],rectHeight[minIndex]);
 
-
- //Processes all pending events for the calling thread  until there are no more events to process.
+        updateDisplay(i,minIndex,true);
         QApplication::processEvents();
+        Sleep(delayTime);
 
     }
 
