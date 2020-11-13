@@ -23,6 +23,8 @@ private slots:
 
     void on_resetButton_clicked();
 
+    void on_delaySlider_valueChanged(int value);
+
 private:
     Ui::Widget *ui;
     QGraphicsScene *visualizingScene;
@@ -42,5 +44,6 @@ private:
     void selectionSort();
     void updateDisplay(int,int,bool);
 
+    int delayTime;
 };
 #endif // WIDGET_H
