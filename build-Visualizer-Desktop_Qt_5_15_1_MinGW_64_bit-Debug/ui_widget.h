@@ -29,6 +29,7 @@ public:
     QPushButton *resetButton;
     QLabel *delayLabel;
     QSlider *delaySlider;
+    QPushButton *stopButton;
 
     void setupUi(QWidget *Widget)
     {
@@ -59,22 +60,25 @@ public:
         label->setGeometry(QRect(1130, 30, 141, 21));
         pushButton = new QPushButton(Widget);
         pushButton->setObjectName(QString::fromUtf8("pushButton"));
-        pushButton->setGeometry(QRect(1150, 220, 81, 51));
+        pushButton->setGeometry(QRect(1060, 210, 81, 51));
         pushButton->setFlat(false);
         resetButton = new QPushButton(Widget);
         resetButton->setObjectName(QString::fromUtf8("resetButton"));
-        resetButton->setGeometry(QRect(1150, 280, 81, 41));
+        resetButton->setGeometry(QRect(1150, 210, 81, 51));
         delayLabel = new QLabel(Widget);
         delayLabel->setObjectName(QString::fromUtf8("delayLabel"));
         delayLabel->setGeometry(QRect(1170, 120, 81, 21));
         delaySlider = new QSlider(Widget);
         delaySlider->setObjectName(QString::fromUtf8("delaySlider"));
         delaySlider->setGeometry(QRect(1110, 150, 171, 31));
-        delaySlider->setMinimum(25);
-        delaySlider->setMaximum(1000);
-        delaySlider->setSingleStep(25);
+        delaySlider->setMinimum(10);
+        delaySlider->setMaximum(2000);
+        delaySlider->setSingleStep(50);
         delaySlider->setValue(200);
         delaySlider->setOrientation(Qt::Horizontal);
+        stopButton = new QPushButton(Widget);
+        stopButton->setObjectName(QString::fromUtf8("stopButton"));
+        stopButton->setGeometry(QRect(1240, 210, 81, 51));
 
         retranslateUi(Widget);
 
@@ -88,6 +92,7 @@ public:
         pushButton->setText(QCoreApplication::translate("Widget", "Click to Sort ", nullptr));
         resetButton->setText(QCoreApplication::translate("Widget", "Reset", nullptr));
         delayLabel->setText(QCoreApplication::translate("Widget", "Delay = 200ms", nullptr));
+        stopButton->setText(QCoreApplication::translate("Widget", "Stop", nullptr));
     } // retranslateUi
 
 };

@@ -98,6 +98,12 @@ void Widget::selectionSort()
 {
     for(size_t i=0;i<rectHeight.size();i++)
     {
+
+        if(isStopButtonPressed){
+            isStopButtonPressed = false;
+            break;
+        }
+
         size_t minIndex = findMinimum(i);
 
         updateDisplay(i,minIndex,true);
@@ -154,4 +160,9 @@ void Widget::on_delaySlider_valueChanged(int value)
 {
     ui->delayLabel->setText("Delay = "+ QString::number(value)+"ms");
     delayTime=value;
+}
+
+void Widget::on_stopButton_clicked()
+{
+    isStopButtonPressed = true;
 }

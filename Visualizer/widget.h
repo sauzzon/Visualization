@@ -25,6 +25,9 @@ private slots:
 
     void on_delaySlider_valueChanged(int value);
 
+
+    void on_stopButton_clicked();
+
 private:
     Ui::Widget *ui;
     QGraphicsScene *visualizingScene;
@@ -45,5 +48,6 @@ private:
     void updateDisplay(int,int,bool);
 
     int delayTime;
+    bool isStopButtonPressed = false;
 };
 #endif // WIDGET_H
