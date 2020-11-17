@@ -41,8 +41,8 @@
   <widget class="QSlider" name="slider">
    <property name="geometry">
     <rect>
-     <x>1110</x>
-     <y>70</y>
+     <x>1120</x>
+     <y>170</y>
      <width>171</width>
      <height>31</height>
     </rect>
@@ -78,8 +78,8 @@
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>1130</x>
-     <y>30</y>
+     <x>1140</x>
+     <y>130</y>
      <width>141</width>
      <height>21</height>
     </rect>
@@ -91,8 +91,8 @@
   <widget class="QPushButton" name="pushButton">
    <property name="geometry">
     <rect>
-     <x>1060</x>
-     <y>210</y>
+     <x>1070</x>
+     <y>310</y>
      <width>81</width>
      <height>51</height>
     </rect>
@@ -107,8 +107,8 @@
   <widget class="QPushButton" name="resetButton">
    <property name="geometry">
     <rect>
-     <x>1150</x>
-     <y>210</y>
+     <x>1160</x>
+     <y>310</y>
      <width>81</width>
      <height>51</height>
     </rect>
@@ -120,36 +120,36 @@
   <widget class="QLabel" name="delayLabel">
    <property name="geometry">
     <rect>
-     <x>1170</x>
-     <y>120</y>
+     <x>1180</x>
+     <y>220</y>
      <width>81</width>
      <height>21</height>
     </rect>
    </property>
    <property name="text">
-    <string>Delay = 200ms</string>
+    <string>Delay = 10ms</string>
    </property>
   </widget>
   <widget class="QSlider" name="delaySlider">
    <property name="geometry">
     <rect>
-     <x>1110</x>
-     <y>150</y>
+     <x>1120</x>
+     <y>250</y>
      <width>171</width>
      <height>31</height>
     </rect>
    </property>
    <property name="minimum">
-    <number>10</number>
+    <number>0</number>
    </property>
    <property name="maximum">
-    <number>2000</number>
+    <number>100</number>
    </property>
    <property name="singleStep">
-    <number>50</number>
+    <number>10</number>
    </property>
    <property name="value">
-    <number>200</number>
+    <number>10</number>
    </property>
    <property name="orientation">
     <enum>Qt::Horizontal</enum>
@@ -158,14 +158,52 @@
   <widget class="QPushButton" name="stopButton">
    <property name="geometry">
     <rect>
-     <x>1240</x>
-     <y>210</y>
+     <x>1250</x>
+     <y>310</y>
      <width>81</width>
      <height>51</height>
     </rect>
    </property>
    <property name="text">
     <string>Stop</string>
+   </property>
+  </widget>
+  <widget class="QComboBox" name="comboBox">
+   <property name="geometry">
+    <rect>
+     <x>1170</x>
+     <y>50</y>
+     <width>111</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <item>
+    <property name="text">
+     <string>Selection Sort</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Quick Sort</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Merge Sort</string>
+    </property>
+   </item>
+  </widget>
+  <widget class="QLabel" name="label_2">
+   <property name="geometry">
+    <rect>
+     <x>1080</x>
+     <y>50</y>
+     <width>81</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Select Algorithm</string>
    </property>
   </widget>
  </widget>
