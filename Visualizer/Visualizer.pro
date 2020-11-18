@@ -10,15 +10,21 @@ CONFIG += c++11
 
 SOURCES += \
     main.cpp \
+    mainwidget.cpp \
     sorting.cpp \
-    widget.cpp
+    sortwidget.cpp \
+    treewidget.cpp
 
 HEADERS += \
+    mainwidget.h \
     sorting.h \
-    widget.h
+    sortwidget.h \
+    treewidget.h
 
 FORMS += \
-    widget.ui
+    mainwidget.ui \
+    sortwidget.ui \
+    treewidget.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
