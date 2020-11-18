@@ -12,6 +12,7 @@
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QGraphicsView>
+#include <QtWidgets/QLineEdit>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QWidget>
 
@@ -20,20 +21,30 @@ QT_BEGIN_NAMESPACE
 class Ui_TreeWidget
 {
 public:
-    QGraphicsView *graphicsView;
+    QGraphicsView *sceneFrame;
     QPushButton *quitButton;
+    QLineEdit *insertValue;
+    QPushButton *insertButton;
 
     void setupUi(QWidget *TreeWidget)
     {
         if (TreeWidget->objectName().isEmpty())
             TreeWidget->setObjectName(QString::fromUtf8("TreeWidget"));
         TreeWidget->resize(1374, 720);
-        graphicsView = new QGraphicsView(TreeWidget);
-        graphicsView->setObjectName(QString::fromUtf8("graphicsView"));
-        graphicsView->setGeometry(QRect(50, 50, 1121, 621));
+        sceneFrame = new QGraphicsView(TreeWidget);
+        sceneFrame->setObjectName(QString::fromUtf8("sceneFrame"));
+        sceneFrame->setGeometry(QRect(0, 0, 1231, 721));
+        sceneFrame->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+        sceneFrame->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
         quitButton = new QPushButton(TreeWidget);
         quitButton->setObjectName(QString::fromUtf8("quitButton"));
-        quitButton->setGeometry(QRect(1210, 230, 75, 51));
+        quitButton->setGeometry(QRect(1250, 310, 75, 41));
+        insertValue = new QLineEdit(TreeWidget);
+        insertValue->setObjectName(QString::fromUtf8("insertValue"));
+        insertValue->setGeometry(QRect(1250, 89, 81, 21));
+        insertButton = new QPushButton(TreeWidget);
+        insertButton->setObjectName(QString::fromUtf8("insertButton"));
+        insertButton->setGeometry(QRect(1250, 120, 75, 23));
 
         retranslateUi(TreeWidget);
 
@@ -44,6 +55,7 @@ public:
     {
         TreeWidget->setWindowTitle(QCoreApplication::translate("TreeWidget", "Form", nullptr));
         quitButton->setText(QCoreApplication::translate("TreeWidget", "Quit", nullptr));
+        insertButton->setText(QCoreApplication::translate("TreeWidget", "Insert", nullptr));
     } // retranslateUi
 
 };
