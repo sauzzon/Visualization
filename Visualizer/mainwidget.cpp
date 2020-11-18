@@ -17,10 +17,10 @@ void MainWidget::on_sortPushButton_clicked()
 {
     sortWidget = new SortWidget(this);
     sortWidget->show();
-
 }
 
 void MainWidget::on_treePushButton_clicked()
 {
-
+    treeWidget = new TreeWidget(this);
+    treeWidget->show();
 }

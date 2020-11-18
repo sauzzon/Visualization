@@ -12,16 +12,19 @@ SOURCES += \
     main.cpp \
     mainwidget.cpp \
     sorting.cpp \
-    sortwidget.cpp
+    sortwidget.cpp \
+    treewidget.cpp
 
 HEADERS += \
     mainwidget.h \
     sorting.h \
-    sortwidget.h
+    sortwidget.h \
+    treewidget.h
 
 FORMS += \
     mainwidget.ui \
-    sortwidget.ui
+    sortwidget.ui \
+    treewidget.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

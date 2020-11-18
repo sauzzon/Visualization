@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include "sortwidget.h"
+#include "treewidget.h"
 
 namespace Ui {
 class MainWidget;
@@ -24,6 +25,7 @@ private slots:
 private:
     Ui::MainWidget *ui;
     SortWidget* sortWidget;
+    TreeWidget* treeWidget;
 };
 
 #endif // MAINWIDGET_H
