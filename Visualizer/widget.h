@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include<QtWidgets>
+#include"sorting.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class Widget; }
@@ -25,34 +26,11 @@ private slots:
 
     void on_delaySlider_valueChanged(int value);
 
-
     void on_stopButton_clicked();
 
 private:
     Ui::Widget *ui;
     QGraphicsScene *visualizingScene;
-
-    void createRectangles();
-
-    int noOfRectangles;
-
-    std::vector<QGraphicsRectItem*> rectangles;
-    std::vector<double> rectHeight;
-    double rectWidth;
-    size_t findMinimum(size_t startingIndex);
-    double sceneHeight;
-    double sceneWidth;
-
-    double heightDiff;
-    void selectionSort();
-    void updateDisplay(int,int,int,bool);
-    int partition(std::vector<double>& vec,int low,int high);
-    void quickSort(std::vector<double>& vec,int low,int high );
-    void mergeSort(std::vector<double> &rectHeight,int startIdx,int endIdx);
-    void mergeSortCombiner(std::vector<double> &rectHeight,int startIdx,int midIdx,int endIdx);
-    void mergeSortDisplay(int sorted);
-    void processEvents();
-    int delayTime;
-    bool isStopButtonPressed = false;
+    Sorting *sorting;
 };
 #endif // WIDGET_H
