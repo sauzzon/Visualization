@@ -1,4 +1,5 @@
 #include "binaryTree.h"
+#include<math.h>
 
 BSTNode::BSTNode()
 {
@@ -12,7 +13,21 @@ BSTNode::BSTNode()
     root=nullptr;
 }
 
-
+ int BST::treeHeight(BSTNode* root) {
+     // Get the height of the tree
+     if (root == nullptr)
+         return 0;
+     else {
+         // Find the height of both subtrees
+         // and use the larger one
+         int leftHeight = treeHeight(root->Left);
+         int rightHeight = treeHeight(root->Right);
+         if (leftHeight >= rightHeight)
+             return leftHeight + 1;
+         else
+             return rightHeight + 1;
+     }
+ }
 
 
  BSTNode* BST::Insert(BSTNode* node, int key)
@@ -39,7 +54,7 @@ BSTNode::BSTNode()
      }
      // If the given key is smaller than
      // node's key then go to left subtree
-     else
+     else if(node->Key > key)
      {
          node->Left = Insert(node->Left, key);
          node->Left->Parent = node;
@@ -53,52 +68,37 @@ BSTNode::BSTNode()
      // Invoking Insert() function
      // and passing root node and given key
      root = Insert(root, key);
+     draw();
  }
 
- void BST::initializer(QGraphicsScene* mainScene,double height,double width)
+ void BST::initializer(QGraphicsScene* mainScene,double width,double height)
  {
     treeScene=mainScene;
     treeSceneHeight=height;
     treeSceneWidth=width;
  }
 
- void BST::draw(int key)
+ void BST::draw()
  {
-     this->Insert(key);
-//     if(this->root!=nullptr)
-//     {
-//         treeScene->addEllipse(QRectF(QPointF(treeSceneWidth/2,50),QPointF(treeSceneWidth/2+50,50+50)),QPen(QColor(0,0,0)),QBrush(QColor(255,255,255)));
-//         QGraphicsTextItem* text;
-//         text=treeScene->addText(QString::number(key),QFont("Times"));
-//         text->setPos(QPointF(treeSceneWidth/2+10,50+10));
+    treeScene->clear();
+    double xCo = treeSceneWidth/2;
+    double yCo = 50;
 
-//     }
-     double rectX1=treeSceneWidth/2;
-     double rectX2=treeSceneWidth/2+50;
-     double rectY1=50;
-     double rectY2=100;
-    recursiveDraw(this->root,key,rectX1,rectY1,rectX2,rectY2);
+    double heightDiff = treeSceneHeight/treeHeight(root);
+    drawNode(root,xCo,yCo,200,heightDiff);
+
  }
 
- void BST::recursiveDraw(BSTNode* node,int key,double x1,double y1,double x2,double y2)
+ void BST::drawNode(BSTNode *node, double x, double y,double widthDiff,double heightDiff)
  {
-     if(node!=nullptr)
-     {
-//         treeScene->addEllipse(QRectF(QPointF(x1,y1),QPointF(x2,y2)),QPen(QColor(0,0,0)),QBrush(QColor(255,255,255)));
-//         treeScene->addRect(QRectF(QPointF(x1,y1),QPointF(x2,y2)),QPen(QColor(0,0,0)),QBrush(QColor(255,255,255)));
-         QGraphicsTextItem* text;
-         text=treeScene->addText(QString::number(node->Key),QFont("Times"));
-         text->setPos(QPointF(x1+10,y1+10));
+     if(node == nullptr) return;
 
-     if(node->Key>key)
-     {
-         recursiveDraw(node->Left,key,x1-100,y2+50,x1-120,y2+80);
-     }
-     else if(node->Key<key)
-     {
-         recursiveDraw(node->Right,key,x2+100,y2+50,x2+120,y2+80);
-     }
-     }
+     QGraphicsTextItem* text;
+     text=treeScene->addText(QString::number(node->Key),QFont("Times"));
+     text->setPos(QPointF(x,y));
 
 
+     drawNode(node->Left,x-widthDiff,y+heightDiff,widthDiff/2,heightDiff);
+     drawNode(node->Right,x+widthDiff,y+heightDiff,widthDiff/2,heightDiff);
  }
+
