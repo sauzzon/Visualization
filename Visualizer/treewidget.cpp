@@ -30,4 +30,5 @@ void TreeWidget::on_insertButton_clicked()
     QString textToInsert=ui->insertValue->text();
     int num=textToInsert.toInt();
     tree->Insert(num);
+    ui->insertValue->setText("");
 }

@@ -119,7 +119,7 @@ BSTNode::BSTNode()
      textNumber->setPos(QPointF(x,y));
      if(node->Left!=nullptr)
       {
-      treeScene->addLine(textRect.bottomLeft().x(),textRect.bottomLeft().y(),x-widthDiff,y+heightDiff,QPen(QColor(0,0,0)));
+      treeScene->addLine(textRect.bottomLeft().x(),textRect.bottomLeft().y(),x-widthDiff+textRect.width(),y+heightDiff,QPen(QColor(0,0,0)));
       }
       if(node->Right!=nullptr)
       {
