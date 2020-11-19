@@ -31,8 +31,7 @@ BSTNode::BSTNode()
 
  double BST::findWidthDiff(){
      double height = treeHeight(root);
-     double width = pow(2,height-1);
-     return treeSceneWidth/width;
+     return treeSceneWidth/height;
  }
 
  BSTNode* BST::Insert(BSTNode* node, int key)
@@ -79,8 +78,8 @@ BSTNode::BSTNode()
  void BST::initializer(QGraphicsScene* mainScene,double width,double height)
  {
     treeScene=mainScene;
-    treeSceneHeight=height-30;
-    treeSceneWidth=width-30;
+    treeSceneHeight=height-50;
+    treeSceneWidth=width-50;
  }
 
  void BST::draw()
