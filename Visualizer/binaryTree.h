@@ -33,7 +33,7 @@ public:
     void drawNode(BSTNode* ,double,double,double,double);
     void Insert(int key);
     int treeHeight(BSTNode*);
-    double findWidthDiff();
+    double findWidthDiff(double);
 
 private:
     BSTNode* root;

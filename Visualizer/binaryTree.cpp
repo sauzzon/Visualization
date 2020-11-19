@@ -29,9 +29,19 @@ BSTNode::BSTNode()
      }
  }
 
- double BST::findWidthDiff(){
+
+//  treescene/2 = x + x/2 + x/4  + ...
+ // treescene/2 = x/2^0  + x/2^1 + x/2^2  + ... x/2^(n-1)
+ // solving for x which is the required value of widthDiff
+
+
+ double BST::findWidthDiff(double initPos){
      double height = treeHeight(root);
-     return treeSceneWidth/height;
+     double sum=0;
+     for(int i=0;i<=height-2;i++){
+         sum+=(1/(pow(2,i)));
+     }
+     return (initPos/sum);
  }
 
  BSTNode* BST::Insert(BSTNode* node, int key)
@@ -90,7 +100,7 @@ BSTNode::BSTNode()
 
     double heightDiff = treeSceneHeight/treeHeight(root);
 
-    double widthDiff = findWidthDiff();
+    double widthDiff = findWidthDiff(xCo);
     drawNode(root,xCo,yCo,widthDiff,heightDiff);
 
  }
