@@ -29,6 +29,11 @@ BSTNode::BSTNode()
      }
  }
 
+ double BST::findWidthDiff(){
+     double height = treeHeight(root);
+     double width = pow(2,height-1);
+     return treeSceneWidth/width;
+ }
 
  BSTNode* BST::Insert(BSTNode* node, int key)
  {
@@ -74,18 +79,20 @@ BSTNode::BSTNode()
  void BST::initializer(QGraphicsScene* mainScene,double width,double height)
  {
     treeScene=mainScene;
-    treeSceneHeight=height;
-    treeSceneWidth=width;
+    treeSceneHeight=height-30;
+    treeSceneWidth=width-30;
  }
 
  void BST::draw()
  {
     treeScene->clear();
     double xCo = treeSceneWidth/2;
-    double yCo = 50;
+    double yCo = 0;
 
     double heightDiff = treeSceneHeight/treeHeight(root);
-    drawNode(root,xCo,yCo,200,heightDiff);
+
+    double widthDiff = findWidthDiff();
+    drawNode(root,xCo,yCo,widthDiff,heightDiff);
 
  }
 
@@ -93,9 +100,23 @@ BSTNode::BSTNode()
  {
      if(node == nullptr) return;
 
-     QGraphicsTextItem* text;
-     text=treeScene->addText(QString::number(node->Key),QFont("Times"));
-     text->setPos(QPointF(x,y));
+     QGraphicsTextItem text(QString::number(node->Key),nullptr);
+     QRectF textRect;
+     textRect=text.boundingRect();
+     textRect.moveTo(QPointF(x,y));
+     treeScene->addRect(textRect,QPen(QColor(0,0,0)),QBrush(QColor(255,255,255)));
+     QGraphicsTextItem* textNumber;
+     textNumber=treeScene->addText(QString::number(node->Key),QFont("Times"));
+     textNumber->setPos(QPointF(x,y));
+     if(node->Left!=nullptr)
+      {
+      treeScene->addLine(textRect.bottomLeft().x(),textRect.bottomLeft().y(),x-widthDiff,y+heightDiff,QPen(QColor(0,0,0)));
+      }
+      if(node->Right!=nullptr)
+      {
+      treeScene->addLine(textRect.bottomRight().x(),textRect.bottomRight().y(),x+widthDiff,y+heightDiff,QPen(QColor(0,0,0)));
+
+       }
 
 
      drawNode(node->Left,x-widthDiff,y+heightDiff,widthDiff/2,heightDiff);
