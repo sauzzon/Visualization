@@ -29,10 +29,11 @@ public:
      BST();
     ~BST();
     void initializer(QGraphicsScene*,double,double);
-    void draw(int key);
+    void draw();
+    void drawNode(BSTNode* ,double,double,double,double);
     void Insert(int key);
-    void recursiveDraw(BSTNode*,int,double,double,double,double);
-
+    int treeHeight(BSTNode*);
+    double findWidthDiff();
 
 private:
     BSTNode* root;
