@@ -82,7 +82,7 @@ BSTNode::BSTNode()
      // Invoking Insert() function
      // and passing root node and given key
      root = Insert(root, key);
-     draw();
+     draw(0,false);
  }
 
  void BST::Search(int key)
@@ -95,6 +95,8 @@ BSTNode::BSTNode()
 
  void BST::Search(BSTNode* node,int key)
  {
+     draw(node->Key,true);
+
      if(node==nullptr)
      {
          setStatus("Node Not found");
@@ -137,26 +139,25 @@ BSTNode::BSTNode()
  {
     treeScene=mainScene;
     treeStats=treeStatus;
-    treeSceneHeight=height-50;
+    treeSceneHeight=height;
     treeSceneWidth=width-50;
     setDelay(1000);
  }
 
- void BST::draw()
+ void BST::draw(int coloringKey,bool toColor)
  {
     treeScene->clear();
-    setStatus("Drawing Tree");
     double xCo = treeSceneWidth/2;
     double yCo = 0;
 
     double heightDiff = treeSceneHeight/treeHeight(root);
 
     double widthDiff = findWidthDiff(xCo);
-    drawNode(root,xCo,yCo,widthDiff,heightDiff);
+    drawNode(root,xCo,yCo,widthDiff,heightDiff,coloringKey,toColor);
 
  }
 
- void BST::drawNode(BSTNode *node, double x, double y,double widthDiff,double heightDiff)
+ void BST::drawNode(BSTNode *node, double x, double y,double widthDiff,double heightDiff,int keyToBeColored, bool isNodeToBeColored)
  {
      if(node == nullptr) return;
 
@@ -164,7 +165,15 @@ BSTNode::BSTNode()
      QRectF textRect;
      textRect=text.boundingRect();
      textRect.moveTo(QPointF(x,y));
-     treeScene->addRect(textRect,QPen(QColor(0,0,0)),QBrush(QColor(255,255,255)));
+     QColor nodeColor;
+
+     if(isNodeToBeColored and keyToBeColored == node->Key){
+         nodeColor.setRgb(255,0,0);
+         isNodeToBeColored = false;
+     }
+     else nodeColor.setRgb(144,238,144);
+
+     treeScene->addRect(textRect,QPen(QColor(0,0,0)),QBrush(QColor(nodeColor)));
      QGraphicsTextItem* textNumber;
      textNumber=treeScene->addText(QString::number(node->Key),QFont("Times"));
      textNumber->setPos(QPointF(x,y));
@@ -179,8 +188,8 @@ BSTNode::BSTNode()
        }
 
 
-     drawNode(node->Left,x-widthDiff,y+heightDiff,widthDiff/2,heightDiff);
-     drawNode(node->Right,x+widthDiff,y+heightDiff,widthDiff/2,heightDiff);
+     drawNode(node->Left,x-widthDiff,y+heightDiff,widthDiff/2,heightDiff,keyToBeColored,isNodeToBeColored);
+     drawNode(node->Right,x+widthDiff,y+heightDiff,widthDiff/2,heightDiff,keyToBeColored,isNodeToBeColored);
  }
 
  void BST::setStatus(QString status)

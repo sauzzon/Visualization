@@ -29,8 +29,8 @@ public:
      BST();
     ~BST();
     void initializer(QGraphicsScene*,double,double,QLabel*);
-    void draw();
-    void drawNode(BSTNode* ,double,double,double,double);
+    void draw(int,bool);
+    void drawNode(BSTNode* ,double,double,double,double,int,bool);
     void Insert(int key);
     void Search(int key);
     int treeHeight(BSTNode*);

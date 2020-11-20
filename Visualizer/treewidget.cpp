@@ -11,7 +11,6 @@ TreeWidget::TreeWidget(QWidget *parent) :
     treeStatus=ui->treeStatus;
     mainSceneHeight=ui->sceneFrame->size().height();
     mainSceneWidth=ui->sceneFrame->size().width();
-    ui->sceneFrame->setSceneRect(0,0,mainSceneWidth,mainSceneHeight);
     ui->sceneFrame->setScene(mainScene);
     tree->initializer(mainScene,mainSceneWidth,mainSceneHeight,treeStatus);
 }
