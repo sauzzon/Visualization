@@ -8,11 +8,12 @@ TreeWidget::TreeWidget(QWidget *parent) :
     ui->setupUi(this);
     tree=new BST;
     mainScene=new QGraphicsScene();
+    treeStatus=ui->treeStatus;
     mainSceneHeight=ui->sceneFrame->size().height();
     mainSceneWidth=ui->sceneFrame->size().width();
     ui->sceneFrame->setSceneRect(0,0,mainSceneWidth,mainSceneHeight);
     ui->sceneFrame->setScene(mainScene);
-    tree->initializer(mainScene,mainSceneWidth,mainSceneHeight);
+    tree->initializer(mainScene,mainSceneWidth,mainSceneHeight,treeStatus);
 }
 
 TreeWidget::~TreeWidget()
@@ -31,4 +32,12 @@ void TreeWidget::on_insertButton_clicked()
     int num=textToInsert.toInt();
     tree->Insert(num);
     ui->insertValue->setText("");
+}
+
+void TreeWidget::on_searchButton_clicked()
+{
+    QString textToInsert=ui->searchValue->text();
+    int num=textToInsert.toInt();
+    tree->Search(num);
+    ui->searchValue->setText("");
 }

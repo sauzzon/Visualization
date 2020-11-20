@@ -22,12 +22,15 @@ private slots:
 
     void on_insertButton_clicked();
 
+    void on_searchButton_clicked();
+
 private:
     Ui::TreeWidget *ui;
     QGraphicsScene* mainScene;
     BST* tree;
     double mainSceneWidth;
     double mainSceneHeight;
+    QLabel* treeStatus;
 
 };
 
