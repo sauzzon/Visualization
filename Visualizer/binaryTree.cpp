@@ -85,16 +85,67 @@ BSTNode::BSTNode()
      draw();
  }
 
- void BST::initializer(QGraphicsScene* mainScene,double width,double height)
+ void BST::Search(int key)
+ {
+     setStatus("Searching for "+QString::number(key)+" in the tree");
+     Search(root,key);
+
+
+ }
+
+ void BST::Search(BSTNode* node,int key)
+ {
+     if(node==nullptr)
+     {
+         setStatus("Node Not found");
+         return;
+     }
+     else
+     {
+         setStatus("Comparing search key "+QString::number(key)+" with root node "+QString::number(node->Key));
+         if(node->Key>key)
+         {
+             setStatus("Search Key"+QString::number(key)+"  <  "+QString::number(node->Key));
+             if(node->Left!=nullptr)
+             {
+             setStatus("Moving to left Branch of node "+QString::number(node->Key));
+             }
+             Search(node->Left,key);
+
+
+         }
+         else if(node->Key<key)
+         {
+             setStatus("Search Key"+QString::number(key)+"  >  "+QString::number(node->Key));
+             if(node->Right!=nullptr)
+             {
+              setStatus("Moving to Right Branch of node "+QString::number(node->Key));
+             }
+             Search(node->Right,key);
+
+
+         }
+         else if(node->Key==key)
+         {
+             setStatus("Node found");
+         }
+     }
+
+ }
+
+ void BST::initializer(QGraphicsScene* mainScene,double width,double height,QLabel* treeStatus)
  {
     treeScene=mainScene;
+    treeStats=treeStatus;
     treeSceneHeight=height-50;
     treeSceneWidth=width-50;
+    setDelay(1000);
  }
 
  void BST::draw()
  {
     treeScene->clear();
+    setStatus("Drawing Tree");
     double xCo = treeSceneWidth/2;
     double yCo = 0;
 
@@ -132,3 +183,21 @@ BSTNode::BSTNode()
      drawNode(node->Right,x+widthDiff,y+heightDiff,widthDiff/2,heightDiff);
  }
 
+ void BST::setStatus(QString status)
+ {
+     treeStats->clear();
+     treeStats->setText(status);
+     processEvents();
+
+ }
+
+ void BST::setDelay(int value)
+ {
+     delayTime=value;
+ }
+
+ void BST::processEvents()
+ {
+     QApplication::processEvents();
+     QThread::msleep(delayTime);
+ }

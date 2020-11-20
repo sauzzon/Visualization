@@ -28,19 +28,26 @@ class BST
 public:
      BST();
     ~BST();
-    void initializer(QGraphicsScene*,double,double);
+    void initializer(QGraphicsScene*,double,double,QLabel*);
     void draw();
     void drawNode(BSTNode* ,double,double,double,double);
     void Insert(int key);
+    void Search(int key);
     int treeHeight(BSTNode*);
     double findWidthDiff(double);
+    void setDelay(int);
+    void processEvents();
 
 private:
     BSTNode* root;
     QGraphicsScene* treeScene;
     BSTNode* Insert(BSTNode* node, int key);
+    void Search(BSTNode* node,int key);
     double treeSceneHeight;
     double treeSceneWidth;
+    QLabel* treeStats;
+    void setStatus(QString);
+    int delayTime;
 
 };
 
