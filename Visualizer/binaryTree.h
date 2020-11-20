@@ -48,6 +48,7 @@ private:
     QLabel* treeStats;
     void setStatus(QString);
     int delayTime;
+    bool isNodeFound = false;
 
 };
 
