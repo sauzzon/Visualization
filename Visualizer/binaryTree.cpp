@@ -135,6 +135,84 @@ BSTNode::BSTNode()
      }
  }
 
+ void BST::Delete(int key)
+ {
+     root=Delete(root,key);
+ }
+
+ BSTNode* BST::Delete(BSTNode* node,int key)
+ {
+     if(node==nullptr)return nullptr;
+
+     else
+     {
+         if(node->Key==key)
+         {
+
+             if(node->Left==nullptr and node->Right==nullptr)
+             {
+
+                 node=nullptr;
+
+             }
+
+             else if(node->Left!=nullptr and node->Right==nullptr)
+             {
+                 node->Left->Parent=node->Parent;
+                 node=node->Left;
+
+
+             }
+
+             else if(node->Left==nullptr and node->Right!=nullptr)
+             {
+                 node->Right->Parent=node->Parent;
+                 node=node->Right;
+
+
+             }
+             else if(node->Left!=nullptr and node->Right!=nullptr)
+             {
+                 node->Key=findMin(node->Right);
+                 node->Right=Delete(node->Right,node->Key);
+
+
+             }
+
+
+         }
+         else if(node->Key>key)
+         {
+             node->Left=Delete(node->Left,key);
+
+         }
+         else if(node->Key<key)
+         {
+             node->Right=Delete(node->Right,key);
+
+         }
+         return node;
+     }
+
+
+ }
+
+ int BST::findMin(BSTNode* node)
+ {
+     if(node == NULL)
+     {
+            return -1;
+     }
+     else if(node->Left == NULL)
+     {
+           return node->Key;
+     }
+     else
+     {
+          return findMin(node->Left);
+     }
+ }
+
 
  void BST::initializer(QGraphicsScene* mainScene,double width,double height)
  {

@@ -26,6 +26,8 @@ private slots:
 
     void on_horizontalSlider_valueChanged(int value);
 
+    void on_deleteButton_clicked();
+
 private:
     Ui::TreeWidget *ui;
     QGraphicsScene* mainScene;

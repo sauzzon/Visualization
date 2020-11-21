@@ -69,7 +69,7 @@
    <property name="geometry">
     <rect>
      <x>1230</x>
-     <y>150</y>
+     <y>130</y>
      <width>121</width>
      <height>20</height>
     </rect>
@@ -79,7 +79,7 @@
    <property name="geometry">
     <rect>
      <x>1250</x>
-     <y>180</y>
+     <y>160</y>
      <width>81</width>
      <height>23</height>
     </rect>
@@ -92,7 +92,7 @@
    <property name="geometry">
     <rect>
      <x>1230</x>
-     <y>280</y>
+     <y>310</y>
      <width>121</width>
      <height>22</height>
     </rect>
@@ -119,14 +119,37 @@
   <widget class="QLabel" name="delayLabel">
    <property name="geometry">
     <rect>
-     <x>1240</x>
-     <y>250</y>
+     <x>1250</x>
+     <y>290</y>
      <width>101</width>
      <height>16</height>
     </rect>
    </property>
    <property name="text">
     <string>Delay = 1000 ms</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="deleteValue">
+   <property name="geometry">
+    <rect>
+     <x>1230</x>
+     <y>200</y>
+     <width>121</width>
+     <height>20</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="deleteButton">
+   <property name="geometry">
+    <rect>
+     <x>1250</x>
+     <y>230</y>
+     <width>75</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Delete</string>
    </property>
   </widget>
  </widget>

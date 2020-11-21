@@ -33,6 +33,7 @@ public:
     void drawNode(BSTNode* ,double,double,double,double,int,bool);
     void Insert(int key);
     void Search(int key);
+    void Delete(int key);
     int treeHeight(BSTNode*);
     double findWidthDiff(double);
     void setDelay(int);
@@ -43,6 +44,8 @@ private:
     QGraphicsScene* treeScene;
     BSTNode* Insert(BSTNode* node, int key);
     void Search(BSTNode* node,int key);
+    BSTNode* Delete(BSTNode* node,int key);
+    int findMin(BSTNode* node);
     double treeSceneHeight;
     double treeSceneWidth;
     int delayTime;

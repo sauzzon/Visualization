@@ -45,3 +45,12 @@ void TreeWidget::on_horizontalSlider_valueChanged(int value)
     ui->delayLabel->setText("Delay = "+ QString::number(value)+" ms");
     tree->setDelay(value);
 }
+
+void TreeWidget::on_deleteButton_clicked()
+{
+    QString textToInsert=ui->deleteValue->text();
+    int num=textToInsert.toInt();
+    tree->Delete(num);
+    ui->deleteValue->setText("");
+
+}
