@@ -39,3 +39,9 @@ void TreeWidget::on_searchButton_clicked()
     tree->Search(num);
     ui->searchValue->setText("");
 }
+
+void TreeWidget::on_horizontalSlider_valueChanged(int value)
+{
+    ui->delayLabel->setText("Delay = "+ QString::number(value)+" ms");
+    tree->setDelay(value);
+}

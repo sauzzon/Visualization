@@ -24,6 +24,8 @@ private slots:
 
     void on_searchButton_clicked();
 
+    void on_horizontalSlider_valueChanged(int value);
+
 private:
     Ui::TreeWidget *ui;
     QGraphicsScene* mainScene;
