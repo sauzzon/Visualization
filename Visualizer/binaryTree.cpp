@@ -1,6 +1,11 @@
 #include "binaryTree.h"
 #include<math.h>
 
+#define SKYBLUE QColor(135,235,231)
+#define RED QColor(255,0,0)
+#define GREEN QColor(0,255,0)
+#define BLACK QColor(0,0,0)
+
 BSTNode::BSTNode()
 {
     Key=0;
@@ -44,6 +49,7 @@ BSTNode::BSTNode()
      return (initPos/sum);
  }
 
+
  BSTNode* BST::Insert(BSTNode* node, int key)
  {
      // If BST doesn't exist
@@ -77,6 +83,7 @@ BSTNode::BSTNode()
      return node;
  }
 
+
  void BST::Insert(int key)
  {
      // Invoking Insert() function
@@ -85,6 +92,7 @@ BSTNode::BSTNode()
      draw(0,false);
  }
 
+
  void BST::Search(int key)
  {
      setStatus("Searching for "+QString::number(key)+" in the tree");
@@ -92,6 +100,7 @@ BSTNode::BSTNode()
 
 
  }
+
 
  void BST::Search(BSTNode* node,int key)
  {
@@ -136,6 +145,7 @@ BSTNode::BSTNode()
 
  }
 
+
  void BST::initializer(QGraphicsScene* mainScene,double width,double height,QLabel* treeStatus)
  {
     treeScene=mainScene;
@@ -144,6 +154,7 @@ BSTNode::BSTNode()
     treeSceneWidth=width-50;
     setDelay(1000);
  }
+
 
  void BST::draw(int coloringKey,bool toColor)
  {
@@ -158,6 +169,7 @@ BSTNode::BSTNode()
 
  }
 
+
  void BST::drawNode(BSTNode *node, double x, double y,double widthDiff,double heightDiff,int keyToBeColored, bool isNodeToBeColored)
  {
      if(node == nullptr) return;
@@ -170,44 +182,46 @@ BSTNode::BSTNode()
 
      if(isNodeToBeColored and keyToBeColored == node->Key){
          if(isNodeFound){
-             nodeColor.setRgb(144,238,144);
+             nodeColor = GREEN;
              isNodeFound = false;
          }
          else {
-             nodeColor.setRgb(255,0,0);
+             nodeColor = RED;
              isNodeToBeColored = false;
          }
-
      }
-     else nodeColor.setRgb(135,206,235);
+     else nodeColor = SKYBLUE;
 
      treeScene->addRect(textRect,QPen(QColor(nodeColor)),QBrush(QColor(nodeColor)));
      QGraphicsTextItem* textNumber;
      textNumber=treeScene->addText(QString::number(node->Key),QFont("Times"));
      textNumber->setPos(QPointF(x,y));
+
+
      if(node->Left!=nullptr)
       {
-      treeScene->addLine(textRect.bottomLeft().x(),textRect.bottomLeft().y(),x-widthDiff+textRect.width(),y+heightDiff,QPen(QColor(0,0,0)));
-      if(isNodeToBeColored and keyToBeColored == node->Left->Key){
+      QColor edgeColor;
 
-           treeScene->addLine(textRect.bottomLeft().x(),textRect.bottomLeft().y(),x-widthDiff+textRect.width(),y+heightDiff,QPen(QColor(255,0,0)));
-           processEvents();
+      if(isNodeToBeColored and keyToBeColored == node->Left->Key) edgeColor=RED;
+      else edgeColor=BLACK;
+       treeScene->addLine(textRect.bottomLeft().x(),textRect.bottomLeft().y(),x-widthDiff+textRect.width(),y+heightDiff,QPen(edgeColor));
       }
-      }
+
       if(node->Right!=nullptr)
       {
-      treeScene->addLine(textRect.bottomRight().x(),textRect.bottomRight().y(),x+widthDiff,y+heightDiff,QPen(QColor(0,0,0)));
-      if(isNodeToBeColored and keyToBeColored == node->Right->Key){
+          QColor edgeColor;
 
-           treeScene->addLine(textRect.bottomRight().x(),textRect.bottomRight().y(),x+widthDiff,y+heightDiff,QPen(QColor(255,0,0)));
-           processEvents();
-        }
+      if(isNodeToBeColored and keyToBeColored == node->Right->Key) edgeColor =RED;
+      else edgeColor = BLACK;
+       treeScene->addLine(textRect.bottomRight().x(),textRect.bottomRight().y(),x+widthDiff,y+heightDiff,QPen(edgeColor));
+
        }
 
 
      drawNode(node->Left,x-widthDiff,y+heightDiff,widthDiff/2,heightDiff,keyToBeColored,isNodeToBeColored);
      drawNode(node->Right,x+widthDiff,y+heightDiff,widthDiff/2,heightDiff,keyToBeColored,isNodeToBeColored);
  }
+
 
 
  void BST::setStatus(QString status)
@@ -218,10 +232,12 @@ BSTNode::BSTNode()
 
  }
 
+
  void BST::setDelay(int value)
  {
      delayTime=value;
  }
+
 
  void BST::processEvents()
  {
