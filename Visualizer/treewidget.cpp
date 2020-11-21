@@ -8,11 +8,10 @@ TreeWidget::TreeWidget(QWidget *parent) :
     ui->setupUi(this);
     tree=new BST;
     mainScene=new QGraphicsScene();
-    treeStatus=ui->treeStatus;
     mainSceneHeight=ui->sceneFrame->size().height();
     mainSceneWidth=ui->sceneFrame->size().width();
     ui->sceneFrame->setScene(mainScene);
-    tree->initializer(mainScene,mainSceneWidth,mainSceneHeight,treeStatus);
+    tree->initializer(mainScene,mainSceneWidth,mainSceneHeight);
 }
 
 TreeWidget::~TreeWidget()

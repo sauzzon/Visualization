@@ -69,6 +69,9 @@ BSTNode::BSTNode()
      // node's key then go to right subtree
      else if(node->Key < key)
      {
+         draw(node->Key,true);
+         processEvents();
+
          node->Right = Insert(node->Right, key);
          node->Right->Parent = node;
      }
@@ -76,6 +79,9 @@ BSTNode::BSTNode()
      // node's key then go to left subtree
      else if(node->Key > key)
      {
+         draw(node->Key,true);
+         processEvents();
+
          node->Left = Insert(node->Left, key);
          node->Left->Parent = node;
      }
@@ -89,16 +95,13 @@ BSTNode::BSTNode()
      // Invoking Insert() function
      // and passing root node and given key
      root = Insert(root, key);
-     draw(0,false);
+     draw(key,false);
  }
 
 
  void BST::Search(int key)
  {
-     setStatus("Searching for "+QString::number(key)+" in the tree");
      Search(root,key);
-
-
  }
 
 
@@ -106,50 +109,36 @@ BSTNode::BSTNode()
  {
      if(node==nullptr)
      {
-         setStatus("Node Not found");
          return;
      }
+
      else
      {
          draw(node->Key,true);
-         setStatus("Comparing search key "+QString::number(key)+" with root node "+QString::number(node->Key));
+         processEvents();
+
          if(node->Key>key)
          {
-             setStatus("Search Key"+QString::number(key)+"  <  "+QString::number(node->Key));
-             if(node->Left!=nullptr)
-             {
-             setStatus("Moving to left Branch of node "+QString::number(node->Key));
-             }
              Search(node->Left,key);
-
 
          }
          else if(node->Key<key)
          {
-             setStatus("Search Key"+QString::number(key)+"  >  "+QString::number(node->Key));
-             if(node->Right!=nullptr)
-             {
-              setStatus("Moving to Right Branch of node "+QString::number(node->Key));
-             }
              Search(node->Right,key);
-
 
          }
          else if(node->Key==key)
          {
-             setStatus("Node found");
              isNodeFound = true;
              draw(node->Key,true);
          }
      }
-
  }
 
 
- void BST::initializer(QGraphicsScene* mainScene,double width,double height,QLabel* treeStatus)
+ void BST::initializer(QGraphicsScene* mainScene,double width,double height)
  {
     treeScene=mainScene;
-    treeStats=treeStatus;
     treeSceneHeight=height;
     treeSceneWidth=width-50;
     setDelay(1000);
@@ -182,7 +171,7 @@ BSTNode::BSTNode()
 
      if(isNodeToBeColored and keyToBeColored == node->Key){
          if(isNodeFound){
-             nodeColor = GREEN;
+             nodeColor = SKYBLUE;
              isNodeFound = false;
          }
          else {
@@ -190,7 +179,10 @@ BSTNode::BSTNode()
              isNodeToBeColored = false;
          }
      }
-     else nodeColor = SKYBLUE;
+     else if(!isNodeToBeColored and keyToBeColored ==node->Key){
+         nodeColor = SKYBLUE;
+     }
+     else nodeColor = GREEN;
 
      treeScene->addRect(textRect,QPen(QColor(nodeColor)),QBrush(QColor(nodeColor)));
      QGraphicsTextItem* textNumber;
@@ -221,17 +213,6 @@ BSTNode::BSTNode()
      drawNode(node->Left,x-widthDiff,y+heightDiff,widthDiff/2,heightDiff,keyToBeColored,isNodeToBeColored);
      drawNode(node->Right,x+widthDiff,y+heightDiff,widthDiff/2,heightDiff,keyToBeColored,isNodeToBeColored);
  }
-
-
-
- void BST::setStatus(QString status)
- {
-     treeStats->clear();
-     treeStats->setText(status);
-     processEvents();
-
- }
-
 
  void BST::setDelay(int value)
  {

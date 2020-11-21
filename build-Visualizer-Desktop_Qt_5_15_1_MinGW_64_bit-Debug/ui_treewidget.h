@@ -12,7 +12,6 @@
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QGraphicsView>
-#include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QWidget>
@@ -26,7 +25,6 @@ public:
     QPushButton *quitButton;
     QLineEdit *insertValue;
     QPushButton *insertButton;
-    QLabel *treeStatus;
     QLineEdit *searchValue;
     QPushButton *searchButton;
 
@@ -49,9 +47,6 @@ public:
         insertButton = new QPushButton(TreeWidget);
         insertButton->setObjectName(QString::fromUtf8("insertButton"));
         insertButton->setGeometry(QRect(1250, 120, 75, 23));
-        treeStatus = new QLabel(TreeWidget);
-        treeStatus->setObjectName(QString::fromUtf8("treeStatus"));
-        treeStatus->setGeometry(QRect(790, 0, 441, 31));
         searchValue = new QLineEdit(TreeWidget);
         searchValue->setObjectName(QString::fromUtf8("searchValue"));
         searchValue->setGeometry(QRect(1250, 150, 81, 20));
@@ -69,7 +64,6 @@ public:
         TreeWidget->setWindowTitle(QCoreApplication::translate("TreeWidget", "Form", nullptr));
         quitButton->setText(QCoreApplication::translate("TreeWidget", "Quit", nullptr));
         insertButton->setText(QCoreApplication::translate("TreeWidget", "Insert", nullptr));
-        treeStatus->setText(QString());
         searchButton->setText(QCoreApplication::translate("TreeWidget", "Search", nullptr));
     } // retranslateUi
 
