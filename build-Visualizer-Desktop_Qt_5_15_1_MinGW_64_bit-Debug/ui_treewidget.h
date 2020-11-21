@@ -31,6 +31,8 @@ public:
     QPushButton *searchButton;
     QSlider *horizontalSlider;
     QLabel *delayLabel;
+    QLineEdit *deleteValue;
+    QPushButton *deleteButton;
 
     void setupUi(QWidget *TreeWidget)
     {
@@ -53,13 +55,13 @@ public:
         insertButton->setGeometry(QRect(1250, 90, 81, 23));
         searchValue = new QLineEdit(TreeWidget);
         searchValue->setObjectName(QString::fromUtf8("searchValue"));
-        searchValue->setGeometry(QRect(1230, 150, 121, 20));
+        searchValue->setGeometry(QRect(1230, 130, 121, 20));
         searchButton = new QPushButton(TreeWidget);
         searchButton->setObjectName(QString::fromUtf8("searchButton"));
-        searchButton->setGeometry(QRect(1250, 180, 81, 23));
+        searchButton->setGeometry(QRect(1250, 160, 81, 23));
         horizontalSlider = new QSlider(TreeWidget);
         horizontalSlider->setObjectName(QString::fromUtf8("horizontalSlider"));
-        horizontalSlider->setGeometry(QRect(1230, 280, 121, 22));
+        horizontalSlider->setGeometry(QRect(1230, 310, 121, 22));
         horizontalSlider->setMinimum(100);
         horizontalSlider->setMaximum(3000);
         horizontalSlider->setSingleStep(100);
@@ -68,7 +70,13 @@ public:
         horizontalSlider->setOrientation(Qt::Horizontal);
         delayLabel = new QLabel(TreeWidget);
         delayLabel->setObjectName(QString::fromUtf8("delayLabel"));
-        delayLabel->setGeometry(QRect(1240, 250, 101, 16));
+        delayLabel->setGeometry(QRect(1250, 290, 101, 16));
+        deleteValue = new QLineEdit(TreeWidget);
+        deleteValue->setObjectName(QString::fromUtf8("deleteValue"));
+        deleteValue->setGeometry(QRect(1230, 200, 121, 20));
+        deleteButton = new QPushButton(TreeWidget);
+        deleteButton->setObjectName(QString::fromUtf8("deleteButton"));
+        deleteButton->setGeometry(QRect(1250, 230, 75, 23));
 
         retranslateUi(TreeWidget);
 
@@ -82,6 +90,7 @@ public:
         insertButton->setText(QCoreApplication::translate("TreeWidget", "Insert", nullptr));
         searchButton->setText(QCoreApplication::translate("TreeWidget", "Search", nullptr));
         delayLabel->setText(QCoreApplication::translate("TreeWidget", "Delay = 1000 ms", nullptr));
+        deleteButton->setText(QCoreApplication::translate("TreeWidget", "Delete", nullptr));
     } // retranslateUi
 
 };

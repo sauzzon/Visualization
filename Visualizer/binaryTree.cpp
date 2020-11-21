@@ -137,7 +137,11 @@ BSTNode::BSTNode()
 
  void BST::Delete(int key)
  {
+     Search(key);
+     draw(key,false);
+     processEvents();
      root=Delete(root,key);
+     draw(0,false);
  }
 
  BSTNode* BST::Delete(BSTNode* node,int key)
