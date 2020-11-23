@@ -11,7 +11,8 @@ TreeWidget::TreeWidget(QWidget *parent) :
     mainSceneHeight=ui->sceneFrame->size().height();
     mainSceneWidth=ui->sceneFrame->size().width();
     ui->sceneFrame->setScene(mainScene);
-    tree->initializer(mainScene,mainSceneWidth,mainSceneHeight);
+    treeStatus = ui->treeStatus;
+    tree->initializer(mainScene,mainSceneWidth,mainSceneHeight,treeStatus);
 }
 
 TreeWidget::~TreeWidget()
@@ -26,6 +27,7 @@ void TreeWidget::on_quitButton_clicked()
 
 void TreeWidget::on_insertButton_clicked()
 {
+    ui->treeStatus->setText("INSERTING");
     QString textToInsert=ui->insertValue->text();
     int num=textToInsert.toInt();
     tree->Insert(num);
@@ -34,6 +36,7 @@ void TreeWidget::on_insertButton_clicked()
 
 void TreeWidget::on_searchButton_clicked()
 {
+    ui->treeStatus->setText("SEARCHING");
     QString textToInsert=ui->searchValue->text();
     int num=textToInsert.toInt();
     tree->Search(num);
@@ -48,6 +51,7 @@ void TreeWidget::on_horizontalSlider_valueChanged(int value)
 
 void TreeWidget::on_deleteButton_clicked()
 {
+    ui->treeStatus->setText("DELETING");
     QString textToInsert=ui->deleteValue->text();
     int num=textToInsert.toInt();
     tree->Delete(num);

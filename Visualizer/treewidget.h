@@ -34,6 +34,7 @@ private:
     BST* tree;
     double mainSceneWidth;
     double mainSceneHeight;
+    QLabel* treeStatus;
 };
 
 #endif // TREEWIDGET_H

@@ -95,6 +95,7 @@ BSTNode::BSTNode()
      // Invoking Insert() function
      // and passing root node and given key
      root = Insert(root, key);
+     setTreeStatus(QString::number(key)+" INSERTED");
      draw(key,false);
  }
 
@@ -111,6 +112,7 @@ BSTNode::BSTNode()
  {
      if(node==nullptr)
      {
+         setTreeStatus(QString::number(key)+" NOT FOUND");
          return;
      }
 
@@ -132,6 +134,8 @@ BSTNode::BSTNode()
          else if(node->Key==key)
          {
              isNodeFound = true;
+             isDeleteNodeFound = true;
+             setTreeStatus(QString::number(key)+" FOUND");
              draw(node->Key,true);
          }
      }
@@ -139,9 +143,13 @@ BSTNode::BSTNode()
 
  void BST::Delete(int key)
  {
+     isDeleteNodeFound = false;
      Search(key);
+     if(isDeleteNodeFound){
      root=Delete(root,key);
+     setTreeStatus(QString::number(key)+" DELETED");
      draw(0,false);
+     }
  }
 
  BSTNode* BST::Delete(BSTNode* node,int key)
@@ -218,14 +226,18 @@ BSTNode::BSTNode()
  }
 
 
- void BST::initializer(QGraphicsScene* mainScene,double width,double height)
+ void BST::initializer(QGraphicsScene* mainScene,double width,double height,QLabel* status)
  {
     treeScene=mainScene;
     treeSceneHeight=height;
     treeSceneWidth=width-50;
+    treeStatus = status;
     setDelay(1000);
  }
 
+ void BST::setTreeStatus(QString message){
+     treeStatus->setText(message);
+ }
 
  void BST::draw(int coloringKey,bool toColor)
  {

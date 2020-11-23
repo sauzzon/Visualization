@@ -28,7 +28,7 @@ class BST
 public:
      BST();
     ~BST();
-    void initializer(QGraphicsScene*,double,double);
+    void initializer(QGraphicsScene*,double,double,QLabel*);
     void draw(int,bool);
     void drawNode(BSTNode* ,double,double,double,double,int,bool);
     void Insert(int key);
@@ -50,6 +50,9 @@ private:
     double treeSceneWidth;
     int delayTime;
     bool isNodeFound = false;
+    bool isDeleteNodeFound = false;
+    QLabel* treeStatus;
+    void setTreeStatus(QString);
 
 };
 

@@ -33,6 +33,7 @@ public:
     QLabel *delayLabel;
     QLineEdit *deleteValue;
     QPushButton *deleteButton;
+    QLabel *treeStatus;
 
     void setupUi(QWidget *TreeWidget)
     {
@@ -41,7 +42,7 @@ public:
         TreeWidget->resize(1374, 720);
         sceneFrame = new QGraphicsView(TreeWidget);
         sceneFrame->setObjectName(QString::fromUtf8("sceneFrame"));
-        sceneFrame->setGeometry(QRect(30, 30, 1161, 651));
+        sceneFrame->setGeometry(QRect(30, 40, 1161, 641));
         sceneFrame->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
         sceneFrame->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
         quitButton = new QPushButton(TreeWidget);
@@ -77,6 +78,12 @@ public:
         deleteButton = new QPushButton(TreeWidget);
         deleteButton->setObjectName(QString::fromUtf8("deleteButton"));
         deleteButton->setGeometry(QRect(1250, 230, 75, 23));
+        treeStatus = new QLabel(TreeWidget);
+        treeStatus->setObjectName(QString::fromUtf8("treeStatus"));
+        treeStatus->setGeometry(QRect(990, 10, 171, 21));
+        QFont font;
+        font.setPointSize(14);
+        treeStatus->setFont(font);
 
         retranslateUi(TreeWidget);
 
@@ -91,6 +98,7 @@ public:
         searchButton->setText(QCoreApplication::translate("TreeWidget", "Search", nullptr));
         delayLabel->setText(QCoreApplication::translate("TreeWidget", "Delay = 1000 ms", nullptr));
         deleteButton->setText(QCoreApplication::translate("TreeWidget", "Delete", nullptr));
+        treeStatus->setText(QCoreApplication::translate("TreeWidget", "Binary Search Tree", nullptr));
     } // retranslateUi
 
 };
