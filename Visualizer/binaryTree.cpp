@@ -102,6 +102,8 @@ BSTNode::BSTNode()
  void BST::Search(int key)
  {
      Search(root,key);
+     draw(key,false);
+     processEvents();
  }
 
 
@@ -138,8 +140,6 @@ BSTNode::BSTNode()
  void BST::Delete(int key)
  {
      Search(key);
-     draw(key,false);
-     processEvents();
      root=Delete(root,key);
      draw(0,false);
  }
