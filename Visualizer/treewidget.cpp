@@ -28,9 +28,17 @@ void TreeWidget::on_quitButton_clicked()
 void TreeWidget::on_insertButton_clicked()
 {
     ui->treeStatus->setText("INSERTING");
-    QString textToInsert=ui->insertValue->text();
-    int num=textToInsert.toInt();
-    tree->Insert(num);
+    QString values = ui->insertValue->text();
+    QStringList valueList = values.split(QRegExp("\\s+"), QString::SkipEmptyParts);
+    QStringListIterator iterator(valueList);
+
+    while (iterator.hasNext())
+    {
+        tree->Insert(iterator.next().toInt()); // inserts 0 if text isn't an int
+    }
+//    QString textToInsert=ui->insertValue->text();
+//    int num=textToInsert.toInt();
+//    tree->Insert(num);
     ui->insertValue->setText("");
 }
 

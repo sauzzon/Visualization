@@ -185,7 +185,12 @@ BSTNode::BSTNode()
              }
              else if(node->Left!=nullptr and node->Right!=nullptr)
              {
-                 node->Key=findMin(node->Right);
+                 setTreeStatus("FINDING MINIMUM IN RIGHT SUBTREE");
+                 int minimum = findMin(node->Right);
+                 Search(node->Right,minimum);
+                 node->Key =minimum;
+                 draw(0,false);
+                 processEvents();
                  node->Right=Delete(node->Right,node->Key);
 
 
