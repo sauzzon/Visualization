@@ -5,6 +5,8 @@
 #include<QtWidgets>
 #include<QWidget>
 
+#include<populationdata.h>
+
 class Sorting
 {
 
@@ -23,6 +25,11 @@ public:
 
 private:
      QGraphicsScene* sortingScene;
+
+     PopulationData* popu;
+     void getPopulationData();
+     std::vector<double> countryPopulation;
+     std::vector<QString> countryNames;
 
      std::vector<QGraphicsRectItem*> rectangles;
      std::vector<double> rectHeight;

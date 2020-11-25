@@ -12,6 +12,7 @@ SOURCES += \
     binaryTree.cpp \
     main.cpp \
     mainwidget.cpp \
+    populationdata.cpp \
     sorting.cpp \
     sortwidget.cpp \
     treewidget.cpp
@@ -19,6 +20,7 @@ SOURCES += \
 HEADERS += \
     binaryTree.h \
     mainwidget.h \
+    populationdata.h \
     sorting.h \
     sortwidget.h \
     treewidget.h
@@ -32,3 +34,6 @@ FORMS += \
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+RESOURCES += \
+    resource.qrc

@@ -1,4 +1,6 @@
 #include "sorting.h"
+#include <QTextStream>
+
 
 #define SKYBLUE QColor(135,235,231)
 #define GREY QColor(220,220,220)
@@ -9,6 +11,22 @@
 
 Sorting::Sorting()
 {
+   getPopulationData();
+}
+
+void Sorting::getPopulationData(){
+    popu = new PopulationData;
+    countryPopulation = popu->getCountryPopulation();
+    countryNames = popu->getCountryNames();
+
+//printing the data in console
+    QTextStream out(stdout);
+
+    for (auto i: countryNames)
+        out<<i<<Qt::endl;
+
+    for(auto i:countryPopulation)
+        out<<i<<Qt::endl;
 }
 
 void Sorting::initialize(double height,double width,QGraphicsScene* visualizingScene){
