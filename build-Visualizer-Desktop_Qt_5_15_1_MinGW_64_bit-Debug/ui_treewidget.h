@@ -80,10 +80,11 @@ public:
         deleteButton->setGeometry(QRect(1250, 230, 75, 23));
         treeStatus = new QLabel(TreeWidget);
         treeStatus->setObjectName(QString::fromUtf8("treeStatus"));
-        treeStatus->setGeometry(QRect(990, 10, 171, 21));
+        treeStatus->setGeometry(QRect(740, 10, 451, 21));
         QFont font;
         font.setPointSize(14);
         treeStatus->setFont(font);
+        treeStatus->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
 
         retranslateUi(TreeWidget);
 
