@@ -15,17 +15,17 @@ Sorting::Sorting()
 }
 
 void Sorting::getPopulationData(){
-    popu = new PopulationData;
-    countryPopulation = popu->getCountryPopulation();
-    countryNames = popu->getCountryNames();
+    fantasy = new JSONData;
+    fantasyPoints =fantasy->getFantasyPoints();
+    playerNames = fantasy->getPlayerNames();
 
 //printing the data in console
     QTextStream out(stdout);
 
-    for (auto i: countryNames)
+    for (auto i: playerNames)
         out<<i<<Qt::endl;
 
-    for(auto i:countryPopulation)
+    for(auto i:fantasyPoints)
         out<<i<<Qt::endl;
 }
 

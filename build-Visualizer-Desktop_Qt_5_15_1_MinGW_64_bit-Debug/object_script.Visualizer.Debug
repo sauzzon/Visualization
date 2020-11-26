@@ -1,7 +1,7 @@
 debug/binaryTree.o
+debug/jsondata.o
 debug/main.o
 debug/mainwidget.o
-debug/populationdata.o
 debug/sorting.o
 debug/sortwidget.o
 debug/treewidget.o

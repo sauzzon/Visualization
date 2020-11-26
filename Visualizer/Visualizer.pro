@@ -10,17 +10,17 @@ CONFIG += c++11
 
 SOURCES += \
     binaryTree.cpp \
+    jsondata.cpp \
     main.cpp \
     mainwidget.cpp \
-    populationdata.cpp \
     sorting.cpp \
     sortwidget.cpp \
     treewidget.cpp
 
 HEADERS += \
     binaryTree.h \
+    jsondata.h \
     mainwidget.h \
-    populationdata.h \
     sorting.h \
     sortwidget.h \
     treewidget.h

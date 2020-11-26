@@ -1,7 +1,7 @@
 release/binaryTree.o
+release/jsondata.o
 release/main.o
 release/mainwidget.o
-release/populationdata.o
 release/sorting.o
 release/sortwidget.o
 release/treewidget.o

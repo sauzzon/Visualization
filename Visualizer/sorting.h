@@ -5,7 +5,7 @@
 #include<QtWidgets>
 #include<QWidget>
 
-#include<populationdata.h>
+#include<jsondata.h>
 
 class Sorting
 {
@@ -26,10 +26,10 @@ public:
 private:
      QGraphicsScene* sortingScene;
 
-     PopulationData* popu;
+     JSONData* fantasy;
      void getPopulationData();
-     std::vector<double> countryPopulation;
-     std::vector<QString> countryNames;
+     std::vector<double> fantasyPoints;
+     std::vector<QString> playerNames;
 
      std::vector<QGraphicsRectItem*> rectangles;
      std::vector<double> rectHeight;
