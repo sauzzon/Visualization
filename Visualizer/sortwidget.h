@@ -30,6 +30,8 @@ private slots:
 
     void on_quitButton_clicked();
 
+    void on_chooseData_currentIndexChanged(int index);
+
 private:
     Ui::SortWidget *ui;
     QGraphicsScene *visualizingScene;

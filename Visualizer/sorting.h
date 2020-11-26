@@ -14,13 +14,17 @@ public:
     Sorting();
     void initialize(double,double,QGraphicsScene*);
     void createRectangles();
+    void createRectanglesFantasy();
+    void switchToFantasy();
     void selectionSort();
     void switchToQuickSort();
     void switchToMergeSort();
     void setRectangles(int);
     void resetRectangles();
+    void resetRectanglesFantasy();
     void setDelay(int);
     void setStopButton();
+    void setFantasySelected(bool);
 
 
 private:
@@ -30,6 +34,9 @@ private:
      void getPopulationData();
      std::vector<double> fantasyPoints;
      std::vector<QString> playerNames;
+     std::vector<QString> players;//recreating playerNames so that original is not changed
+         //not creating another vector for fantasyPoints because it's copied into rectHeight and is not changed
+
 
      std::vector<QGraphicsRectItem*> rectangles;
      std::vector<double> rectHeight;
@@ -40,7 +47,7 @@ private:
 
      int delayTime;
      int noOfRectangles;
-
+     bool isFantasySelected = false;
      bool isStopButtonPressed = false;
 
      size_t findMinimum(size_t startingIndex);

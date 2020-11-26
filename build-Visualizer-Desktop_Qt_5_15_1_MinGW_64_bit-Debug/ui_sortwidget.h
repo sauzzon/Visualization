@@ -34,6 +34,8 @@ public:
     QComboBox *comboBox;
     QLabel *label_2;
     QPushButton *quitButton;
+    QLabel *label_3;
+    QComboBox *chooseData;
 
     void setupUi(QWidget *SortWidget)
     {
@@ -88,15 +90,27 @@ public:
         comboBox->addItem(QString());
         comboBox->addItem(QString());
         comboBox->setObjectName(QString::fromUtf8("comboBox"));
-        comboBox->setGeometry(QRect(1170, 50, 111, 22));
+        comboBox->setGeometry(QRect(1170, 90, 111, 22));
         label_2 = new QLabel(SortWidget);
         label_2->setObjectName(QString::fromUtf8("label_2"));
-        label_2->setGeometry(QRect(1080, 50, 81, 21));
+        label_2->setGeometry(QRect(1080, 90, 81, 21));
         quitButton = new QPushButton(SortWidget);
         quitButton->setObjectName(QString::fromUtf8("quitButton"));
         quitButton->setGeometry(QRect(1160, 390, 81, 41));
+        label_3 = new QLabel(SortWidget);
+        label_3->setObjectName(QString::fromUtf8("label_3"));
+        label_3->setGeometry(QRect(1080, 40, 81, 21));
+        chooseData = new QComboBox(SortWidget);
+        chooseData->addItem(QString());
+        chooseData->addItem(QString());
+        chooseData->setObjectName(QString::fromUtf8("chooseData"));
+        chooseData->setGeometry(QRect(1170, 40, 111, 22));
 
         retranslateUi(SortWidget);
+
+        comboBox->setCurrentIndex(0);
+        chooseData->setCurrentIndex(0);
+
 
         QMetaObject::connectSlotsByName(SortWidget);
     } // setupUi
@@ -115,6 +129,10 @@ public:
 
         label_2->setText(QCoreApplication::translate("SortWidget", "Select Algorithm", nullptr));
         quitButton->setText(QCoreApplication::translate("SortWidget", "Quit", nullptr));
+        label_3->setText(QCoreApplication::translate("SortWidget", "Choose Data", nullptr));
+        chooseData->setItemText(0, QCoreApplication::translate("SortWidget", "Random Data", nullptr));
+        chooseData->setItemText(1, QCoreApplication::translate("SortWidget", "Fantasy", nullptr));
+
     } // retranslateUi
 
 };
