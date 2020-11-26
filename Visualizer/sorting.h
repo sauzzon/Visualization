@@ -30,6 +30,9 @@ private:
      void getPopulationData();
      std::vector<double> fantasyPoints;
      std::vector<QString> playerNames;
+     std::vector<QString> players;//recreating playerNames so that original is not changed
+         //not creating another vector for fantasyPoints because it's copied into rectHeight and is not changed
+
 
      std::vector<QGraphicsRectItem*> rectangles;
      std::vector<double> rectHeight;

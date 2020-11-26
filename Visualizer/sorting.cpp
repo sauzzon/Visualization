@@ -30,6 +30,7 @@ void Sorting::getPopulationData(){
 }
 
 void Sorting::initialize(double height,double width,QGraphicsScene* visualizingScene){
+
     sortingScene = visualizingScene;
     //height and width of main scene
         sceneHeight = height-20;
@@ -44,29 +45,37 @@ void Sorting::initialize(double height,double width,QGraphicsScene* visualizingS
 }
 
 void Sorting::createRectangles(){
+    players = playerNames;
 
-    rectWidth = sceneWidth / noOfRectangles;
+    rectWidth = sceneWidth / fantasyPoints.size();
 
 //resize sets the std::vector size
-    rectangles.resize(noOfRectangles);
+    rectangles.resize(fantasyPoints.size());
 
-//heightDiff is the difference in height between two consecutive sorted rectangles
-    heightDiff = sceneHeight / noOfRectangles;
+    int largestData = *std::max_element(fantasyPoints.begin(),fantasyPoints.end());
 
-//putting height of rectangles in vector called rectHeight
-//push_back is a method in std::vector to insert elements from back
+    int ratio = sceneHeight/largestData;
 
-        double height = heightDiff;
-    for(int i=0;i<noOfRectangles;i++){
-        rectHeight.push_back(height);
-        height += heightDiff;
-    }
+    for(size_t i=0;i<fantasyPoints.size();i++)
+        rectHeight.push_back(fantasyPoints.at(i)*ratio);
+
+////heightDiff is the difference in height between two consecutive sorted rectangles
+//    heightDiff = sceneHeight / noOfRectangles;
+
+////putting height of rectangles in vector called rectHeight
+////push_back is a method in std::vector to insert elements from back
+
+//        double height = heightDiff;
+//    for(int i=0;i<noOfRectangles;i++){
+//        rectHeight.push_back(height);
+//        height += heightDiff;
+//    }
 
 // The sorted rectHeight is mixed
 
 //This is a random number engine class that generates pseudo-random numbers. (Found From StackOverflow)
-    auto rng = std::default_random_engine {};
-    std::shuffle(rectHeight.begin(), rectHeight.end(), rng);
+//    auto rng = std::default_random_engine {};
+//    std::shuffle(rectHeight.begin(), rectHeight.end(), rng);
     updateDisplay(0,0,0,false);
 }
 
@@ -87,6 +96,7 @@ void Sorting::selectionSort()
         processEvents();
 
         std::swap(rectHeight[i],rectHeight[minIndex]);
+        std::swap(players[i],players[minIndex]);
 
         updateDisplay(i,i,minIndex,true);
         processEvents();
@@ -178,12 +188,14 @@ int Sorting::partition(std::vector<double>&vec,int low,int high)
         if(vec[i]<pivot)
         {
             std::swap(vec[i],vec[pIndex]);
+            std::swap(players[i],players[pIndex]);
             updateDisplay(low,i,high,true);
             processEvents();
             pIndex+=1;
         }
     }
     std::swap(vec[pIndex],vec[high]);
+    std::swap(players[pIndex],players[high]);
     updateDisplay(low,low,high,true);
     processEvents();
 
@@ -284,6 +296,7 @@ void Sorting::mergeSortDisplay(int sorted)
     {
         p=new QGraphicsRectItem;
         p->setRect(k, (sceneHeight - rectHeight[j]), rectWidth , rectHeight[j]);
+
         if(j<=sorted)
         {
         p->setBrush(QBrush(GREEN));
@@ -325,6 +338,9 @@ void Sorting::updateDisplay(int sortedIntegers,int comp1,int comp2,bool toColor)
             p->setPen(QPen(BLACK));
 
             sortingScene->addItem(p);
+            QGraphicsTextItem *text = sortingScene->addText(players[j]);
+            text->setTextWidth(rectWidth);
+            text->setPos(k,(sceneHeight-rectHeight[j]));
             j++;
             k += rectWidth;
 
