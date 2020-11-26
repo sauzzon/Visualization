@@ -45,6 +45,33 @@ void Sorting::initialize(double height,double width,QGraphicsScene* visualizingS
 }
 
 void Sorting::createRectangles(){
+    rectWidth = sceneWidth / noOfRectangles;
+
+//resize sets the std::vector size
+    rectangles.resize(noOfRectangles);
+
+//heightDiff is the difference in height between two consecutive sorted rectangles
+    heightDiff = sceneHeight / noOfRectangles;
+
+//putting height of rectangles in vector called rectHeight
+//push_back is a method in std::vector to insert elements from back
+
+        double height = heightDiff;
+    for(int i=0;i<noOfRectangles;i++){
+        rectHeight.push_back(height);
+        height += heightDiff;
+    }
+
+ //The sorted rectHeight is mixed
+
+//This is a random number engine class that generates pseudo-random numbers. (Found From StackOverflow)
+    auto rng = std::default_random_engine {};
+    std::shuffle(rectHeight.begin(), rectHeight.end(), rng);
+    updateDisplay(0,0,0,false);
+}
+
+void Sorting::createRectanglesFantasy()
+{
     players = playerNames;
 
     rectWidth = sceneWidth / fantasyPoints.size();
@@ -59,26 +86,8 @@ void Sorting::createRectangles(){
     for(size_t i=0;i<fantasyPoints.size();i++)
         rectHeight.push_back(fantasyPoints.at(i)*ratio);
 
-////heightDiff is the difference in height between two consecutive sorted rectangles
-//    heightDiff = sceneHeight / noOfRectangles;
-
-////putting height of rectangles in vector called rectHeight
-////push_back is a method in std::vector to insert elements from back
-
-//        double height = heightDiff;
-//    for(int i=0;i<noOfRectangles;i++){
-//        rectHeight.push_back(height);
-//        height += heightDiff;
-//    }
-
-// The sorted rectHeight is mixed
-
-//This is a random number engine class that generates pseudo-random numbers. (Found From StackOverflow)
-//    auto rng = std::default_random_engine {};
-//    std::shuffle(rectHeight.begin(), rectHeight.end(), rng);
     updateDisplay(0,0,0,false);
 }
-
 
 void Sorting::selectionSort()
 {
@@ -96,7 +105,8 @@ void Sorting::selectionSort()
         processEvents();
 
         std::swap(rectHeight[i],rectHeight[minIndex]);
-        std::swap(players[i],players[minIndex]);
+        if(isFantasySelected)
+            std::swap(players[i],players[minIndex]);
 
         updateDisplay(i,i,minIndex,true);
         processEvents();
@@ -107,6 +117,7 @@ void Sorting::selectionSort()
 
 void Sorting::switchToQuickSort(){
     quickSort(rectHeight,0,rectHeight.size()-1);
+
 }
 
 
@@ -114,9 +125,21 @@ void Sorting::switchToMergeSort(){
      mergeSort(rectHeight,0,rectHeight.size()-1);
 }
 
+void Sorting::switchToFantasy()
+{
+    resetRectanglesFantasy();
+}
+
 
 void Sorting::setRectangles(int value){
     noOfRectangles = value;
+}
+
+void Sorting::resetRectanglesFantasy()
+{
+    rectHeight.clear();
+    createRectanglesFantasy();
+    isStopButtonPressed = false;
 }
 
 void Sorting::resetRectangles(){
@@ -187,15 +210,13 @@ int Sorting::partition(std::vector<double>&vec,int low,int high)
         processEvents();
         if(vec[i]<pivot)
         {
-            std::swap(vec[i],vec[pIndex]);
-            std::swap(players[i],players[pIndex]);
+            std::swap(vec[i],vec[pIndex]);         
             updateDisplay(low,i,high,true);
             processEvents();
             pIndex+=1;
         }
     }
     std::swap(vec[pIndex],vec[high]);
-    std::swap(players[pIndex],players[high]);
     updateDisplay(low,low,high,true);
     processEvents();
 
@@ -338,14 +359,22 @@ void Sorting::updateDisplay(int sortedIntegers,int comp1,int comp2,bool toColor)
             p->setPen(QPen(BLACK));
 
             sortingScene->addItem(p);
-            QGraphicsTextItem *text = sortingScene->addText(players[j]);
-            text->setTextWidth(rectWidth);
-            text->setPos(k,(sceneHeight-rectHeight[j]));
+            if(isFantasySelected)
+            {
+                QGraphicsTextItem *text = sortingScene->addText(players[j]);
+                text->setTextWidth(rectWidth);
+                text->setPos(k,(sceneHeight-rectHeight[j]));
+            }
             j++;
             k += rectWidth;
 
         }
 
+}
+
+void Sorting::setFantasySelected(bool value)
+{
+    isFantasySelected = value;
 }
 
 

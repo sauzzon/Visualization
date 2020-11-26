@@ -14,13 +14,17 @@ public:
     Sorting();
     void initialize(double,double,QGraphicsScene*);
     void createRectangles();
+    void createRectanglesFantasy();
+    void switchToFantasy();
     void selectionSort();
     void switchToQuickSort();
     void switchToMergeSort();
     void setRectangles(int);
     void resetRectangles();
+    void resetRectanglesFantasy();
     void setDelay(int);
     void setStopButton();
+    void setFantasySelected(bool);
 
 
 private:
@@ -43,7 +47,7 @@ private:
 
      int delayTime;
      int noOfRectangles;
-
+     bool isFantasySelected = false;
      bool isStopButtonPressed = false;
 
      size_t findMinimum(size_t startingIndex);

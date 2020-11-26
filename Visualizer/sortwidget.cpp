@@ -40,17 +40,25 @@ void SortWidget::on_slider_valueChanged(int value)
 
 void SortWidget::on_pushButton_clicked()
 {
-    if(ui->comboBox->currentIndex()==0)
-       sorting->selectionSort();
-    else if(ui->comboBox->currentIndex()==1)
-        sorting->switchToQuickSort();
-    else if(ui->comboBox->currentIndex()==2)
-       sorting->switchToMergeSort();
+    if(ui->chooseData->currentIndex()==1)
+        sorting->selectionSort();
+    else
+    {
+        if(ui->comboBox->currentIndex()==0)
+           sorting->selectionSort();
+        else if(ui->comboBox->currentIndex()==1)
+            sorting->switchToQuickSort();
+        else if(ui->comboBox->currentIndex()==2)
+           sorting->switchToMergeSort();
+    }
 }
 
 void SortWidget::on_resetButton_clicked()
 {
-   sorting->resetRectangles();
+   if(ui->chooseData->currentIndex()==0)
+    sorting->resetRectangles();
+   else if(ui->chooseData->currentIndex()==1)
+    sorting->resetRectanglesFantasy();
 }
 
 void SortWidget::on_delaySlider_valueChanged(int value)
@@ -68,4 +76,30 @@ void SortWidget::on_stopButton_clicked()
 void SortWidget::on_quitButton_clicked()
 {
     hide();
+}
+
+void SortWidget::on_chooseData_currentIndexChanged(int index)
+{
+    if(index==0)
+    {
+        ui->label->show();
+        ui->label_2->show();
+        ui->comboBox->show();
+        ui->slider->show();
+        ui->delaySlider->setGeometry(1120,250,1171,31);
+        ui->delayLabel->setGeometry(1180,220,81,21);
+        sorting->setFantasySelected(false);
+        sorting->resetRectangles();
+    }
+    else if(index==1)
+    {
+        ui->label->hide();
+        ui->label_2->hide();
+        ui->comboBox->hide();
+        ui->slider->hide();
+        ui->delayLabel->setGeometry(1150,140,141,21);
+        ui->delaySlider->setGeometry(1120,180,171,31);
+        sorting->setFantasySelected(true);
+        sorting->switchToFantasy();
+    }
 }
