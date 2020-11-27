@@ -114,7 +114,7 @@ public:
         choosePoints->setGeometry(QRect(1170, 100, 111, 22));
         choosePointsLabel = new QLabel(SortWidget);
         choosePointsLabel->setObjectName(QString::fromUtf8("choosePointsLabel"));
-        choosePointsLabel->setGeometry(QRect(1090, 100, 81, 21));
+        choosePointsLabel->setGeometry(QRect(1080, 100, 91, 21));
 
         retranslateUi(SortWidget);
 
@@ -145,9 +145,9 @@ public:
         chooseData->setItemText(1, QCoreApplication::translate("SortWidget", "Fantasy", nullptr));
 
         choosePoints->setItemText(0, QCoreApplication::translate("SortWidget", "Total Points", nullptr));
-        choosePoints->setItemText(1, QCoreApplication::translate("SortWidget", "Weekly Points", nullptr));
+        choosePoints->setItemText(1, QCoreApplication::translate("SortWidget", "Gameweek Points", nullptr));
 
-        choosePointsLabel->setText(QCoreApplication::translate("SortWidget", "Weekly/Total", nullptr));
+        choosePointsLabel->setText(QCoreApplication::translate("SortWidget", "Total/Gameweek", nullptr));
     } // retranslateUi
 
 };

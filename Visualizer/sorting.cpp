@@ -77,18 +77,25 @@ void Sorting::createRectangles(){
 void Sorting::createRectanglesFantasy(std::vector<double>&points)
 {
     players = playerNames;
+    rectPointHeight =points;
 
     rectWidth = sceneWidth / points.size();
 
 //resize sets the std::vector size
     rectangles.resize(points.size());
 
-    int largestData = *std::max_element(points.begin(),points.end());
+//creating rectangles of height of screen for highest point and
+//  25% of screen for lowest point and interpolating intermediate values
 
-    ratio = sceneHeight/largestData;
+    double maxPoint = *std::max_element(points.begin(),points.end());
+    double minPoint = *std::min_element(points.begin(),points.end());
+    double maxHeight = sceneHeight;
+    double minHeight = 0.25*sceneHeight;
 
-    for(size_t i=0;i<points.size();i++)
-        rectHeight.push_back(points.at(i)*ratio);
+    for(size_t i=0;i<points.size();i++){
+        double pointHeight =minHeight+((points.at(i)-minPoint)/(maxPoint-minPoint))*(maxHeight-minHeight);
+        rectHeight.push_back(pointHeight);
+    }
 
  //arranging data alphabetically
     for (size_t i= 0; i <players.size();i++)
@@ -99,6 +106,7 @@ void Sorting::createRectanglesFantasy(std::vector<double>&points)
                    {
                        std::swap(players[i],players[j]);
                        std::swap(rectHeight[i],rectHeight[j]);
+                       std::swap(rectPointHeight[i],rectPointHeight[j]);
                    }
                }
            }
@@ -122,8 +130,10 @@ void Sorting::selectionSort()
         processEvents();
 
         std::swap(rectHeight[i],rectHeight[minIndex]);
-        if(isFantasySelected)
+        if(isFantasySelected){
             std::swap(players[i],players[minIndex]);
+            std::swap(rectPointHeight[i],rectPointHeight[minIndex]);
+        }
 
         updateDisplay(i,i,minIndex,true);
         processEvents();
@@ -165,6 +175,7 @@ void Sorting::setRectangles(int value){
 void Sorting::resetRectanglesFantasy(int index)
 {
     rectHeight.clear();
+    rectPointHeight.clear();
 
     if(index==0)
         createRectanglesFantasy(totalPoints);
@@ -396,7 +407,7 @@ void Sorting::updateDisplay(int sortedIntegers,int comp1,int comp2,bool toColor)
             sortingScene->addItem(p);
             if(isFantasySelected)
             {
-                QGraphicsTextItem *text = sortingScene->addText(players[j]+"\n\nPoints: "+QString::number(rectHeight[j]/ratio));
+                QGraphicsTextItem *text = sortingScene->addText(players[j]+"\n\nPoints: "+QString::number(rectPointHeight[j]));
                 text->setTextWidth(rectWidth);
                 text->setPos(k,(sceneHeight-rectHeight[j]));
             }
@@ -406,6 +417,7 @@ void Sorting::updateDisplay(int sortedIntegers,int comp1,int comp2,bool toColor)
         }
 
 }
+
 void Sorting::setFantasySelected(bool value)
 {
     isFantasySelected = value;

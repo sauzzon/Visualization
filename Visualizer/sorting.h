@@ -41,6 +41,7 @@ private:
 
      std::vector<QGraphicsRectItem*> rectangles;
      std::vector<double> rectHeight;
+     std::vector<double> rectPointHeight; //recreating backup as rectHeight is changed according to ratio
      double sceneHeight;
      double sceneWidth;
      double heightDiff;
@@ -51,7 +52,6 @@ private:
      int noOfRectangles;
      bool isFantasySelected = false;
      bool isStopButtonPressed = false;
-     double ratio;
 
      size_t findMinimum(size_t startingIndex);
 

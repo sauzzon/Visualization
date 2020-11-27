@@ -277,21 +277,21 @@
    </item>
    <item>
     <property name="text">
-     <string>Weekly Points</string>
+     <string>Gameweek Points</string>
     </property>
    </item>
   </widget>
   <widget class="QLabel" name="choosePointsLabel">
    <property name="geometry">
     <rect>
-     <x>1090</x>
+     <x>1080</x>
      <y>100</y>
-     <width>81</width>
+     <width>91</width>
      <height>21</height>
     </rect>
    </property>
    <property name="text">
-    <string>Weekly/Total</string>
+    <string>Total/Gameweek</string>
    </property>
   </widget>
  </widget>
