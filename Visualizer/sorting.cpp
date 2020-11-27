@@ -11,29 +11,13 @@
 
 Sorting::Sorting()
 {
-   getFantasyData();
 }
 
-void Sorting::getFantasyData(){
-    fantasy = new JSONData;
-    fantasyPoints =fantasy->getWeekPoints();
-    totalPoints =fantasy->getTotalPoints();
-    playerNames = fantasy->getPlayerNames();
+void Sorting::initialize(double height,double width,QGraphicsScene* visualizingScene,std::vector<double> gwPoints,std::vector<double>totPoints,std::vector<QString>names){
 
-//printing the data in console
-    QTextStream out(stdout);
-
-    for (auto i: playerNames)
-        out<<i<<Qt::endl;
-
-    for(auto i:fantasyPoints)
-        out<<i<<Qt::endl;
-
-    for(auto i:totalPoints)
-        out<<i<<Qt::endl;
-}
-
-void Sorting::initialize(double height,double width,QGraphicsScene* visualizingScene){
+    fantasyPoints = gwPoints;
+    totalPoints = totPoints;
+    playerNames = names;
 
     sortingScene = visualizingScene;
     //height and width of main scene

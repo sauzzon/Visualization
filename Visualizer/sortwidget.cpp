@@ -4,11 +4,15 @@
 #define GREY QColor(220,220,220)
 
 
-SortWidget::SortWidget(QWidget *parent)
+SortWidget::SortWidget(std::vector<double> gwPoint,std::vector<double> totPoint,std::vector<QString> names,QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::SortWidget)
 {
     ui->setupUi(this);
+
+    fantasyPoints = gwPoint;
+    totalPoints = totPoint;
+    playerNames = names;
 
 //creating visualizing scene and setting it to visualizing background
     visualizingScene = new QGraphicsScene(this);
@@ -21,10 +25,9 @@ SortWidget::SortWidget(QWidget *parent)
     sorting = new Sorting;
     ui->choosePoints->hide();
     ui->choosePointsLabel->hide();
-    sorting->initialize(sceneHeight,sceneWidth,visualizingScene);
+    sorting->initialize(sceneHeight,sceneWidth,visualizingScene,fantasyPoints,totalPoints,playerNames);
 
 }
-
 
 SortWidget::~SortWidget()
 {

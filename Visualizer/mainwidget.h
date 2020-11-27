@@ -5,6 +5,9 @@
 #include "sortwidget.h"
 #include "treewidget.h"
 
+#include<QtNetwork/QNetworkAccessManager>
+#include<QtNetwork/QNetworkReply>
+
 namespace Ui {
 class MainWidget;
 }
@@ -22,10 +25,19 @@ private slots:
 
     void on_treePushButton_clicked();
 
+    void dataDownloadFinished(QNetworkReply*);
+
 private:
     Ui::MainWidget *ui;
     SortWidget* sortWidget;
     TreeWidget* treeWidget;
+
+    void readJSON();
+    QString myURL ="https://fantasy.premierleague.com/api/leagues-classic/275957/standings/";
+    std::vector<double> weeklyPoints;
+    std::vector<double> totalPoints;
+    std::vector<QString> playerNames;
+
 };
 
 #endif // MAINWIDGET_H
