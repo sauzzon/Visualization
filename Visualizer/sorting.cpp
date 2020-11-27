@@ -90,6 +90,18 @@ void Sorting::createRectanglesFantasy(std::vector<double>&points)
     for(size_t i=0;i<points.size();i++)
         rectHeight.push_back(points.at(i)*ratio);
 
+ //arranging data alphabetically
+    for (size_t i= 0; i <players.size();i++)
+           {
+               for (size_t j = i+1; j < players.size(); j++)
+               {
+                   if (QString::compare(players[i], players[j]) > 0)
+                   {
+                       std::swap(players[i],players[j]);
+                       std::swap(rectHeight[i],rectHeight[j]);
+                   }
+               }
+           }
     updateDisplay(0,0,0,false);
 }
 
