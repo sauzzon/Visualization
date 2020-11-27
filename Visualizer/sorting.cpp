@@ -11,12 +11,13 @@
 
 Sorting::Sorting()
 {
-   getPopulationData();
+   getFantasyData();
 }
 
-void Sorting::getPopulationData(){
+void Sorting::getFantasyData(){
     fantasy = new JSONData;
-    fantasyPoints =fantasy->getFantasyPoints();
+    fantasyPoints =fantasy->getWeekPoints();
+    totalPoints =fantasy->getTotalPoints();
     playerNames = fantasy->getPlayerNames();
 
 //printing the data in console
@@ -26,6 +27,9 @@ void Sorting::getPopulationData(){
         out<<i<<Qt::endl;
 
     for(auto i:fantasyPoints)
+        out<<i<<Qt::endl;
+
+    for(auto i:totalPoints)
         out<<i<<Qt::endl;
 }
 

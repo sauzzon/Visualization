@@ -28,17 +28,21 @@ void JSONData::readJSON(){
 
 // iterating through json array and putting the name of country and its population in vector
               foreach (const QJsonValue & v, array){
-                       fantasyPoints.push_back(v.toObject().value("event_total").toDouble());
+                       weekPoints.push_back(v.toObject().value("event_total").toDouble());
+                       totalPoints.push_back(v.toObject().value("total").toDouble());
                        playerNames.push_back(v.toObject().value("player_name").toString());
             }
         }
     }
 }
 
-std::vector<double> JSONData::getFantasyPoints(){
-    return fantasyPoints;
+std::vector<double> JSONData::getWeekPoints(){
+    return weekPoints;
 }
 
+std::vector<double> JSONData::getTotalPoints(){
+    return totalPoints;
+}
 std::vector<QString> JSONData::getPlayerNames(){
     return playerNames;
 }

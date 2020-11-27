@@ -16,11 +16,13 @@ class JSONData
 public:
     JSONData();
     void readJSON();
-    std::vector<double> getFantasyPoints();
+    std::vector<double> getWeekPoints();
+    std::vector<double> getTotalPoints();
     std::vector<QString> getPlayerNames();
 
 private:
-    std::vector<double> fantasyPoints;
+    std::vector<double> weekPoints;
+    std::vector<double> totalPoints;
     std::vector<QString> playerNames;
 };
 
