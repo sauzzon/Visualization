@@ -129,12 +129,21 @@ void Sorting::selectionSort()
         processEvents();
 
     }
+    if(!isStopButtonPressed){
+        isSortingCompleted = true;
+        updateDisplay(0,0,0,false);
+        isSortingCompleted = false;
+    }
 }
 
 
 void Sorting::switchToQuickSort(){
     quickSort(rectHeight,0,rectHeight.size()-1);
-
+    if(!isStopButtonPressed){
+        isSortingCompleted = true;
+        updateDisplay(0,0,0,false);
+        isSortingCompleted = false;
+    }
 }
 
 
@@ -378,6 +387,9 @@ void Sorting::updateDisplay(int sortedIntegers,int comp1,int comp2,bool toColor)
             if(j<sortedIntegers and toColor ==true)
                  p->setBrush(QBrush(GREEN));
 
+            if(isSortingCompleted){
+                p->setBrush(QBrush(GREEN));
+            }
 
             p->setPen(QPen(BLACK));
 

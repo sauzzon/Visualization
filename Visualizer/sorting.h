@@ -45,6 +45,7 @@ private:
      double sceneWidth;
      double heightDiff;
      double rectWidth;
+     bool isSortingCompleted = false;
 
      int delayTime;
      int noOfRectangles;
