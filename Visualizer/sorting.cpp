@@ -1,4 +1,6 @@
 #include "sorting.h"
+#include <QTextStream>
+
 
 #define SKYBLUE QColor(135,235,231)
 #define GREY QColor(220,220,220)
@@ -9,9 +11,26 @@
 
 Sorting::Sorting()
 {
+   getPopulationData();
+}
+
+void Sorting::getPopulationData(){
+    fantasy = new JSONData;
+    fantasyPoints =fantasy->getFantasyPoints();
+    playerNames = fantasy->getPlayerNames();
+
+//printing the data in console
+    QTextStream out(stdout);
+
+    for (auto i: playerNames)
+        out<<i<<Qt::endl;
+
+    for(auto i:fantasyPoints)
+        out<<i<<Qt::endl;
 }
 
 void Sorting::initialize(double height,double width,QGraphicsScene* visualizingScene){
+
     sortingScene = visualizingScene;
     //height and width of main scene
         sceneHeight = height-20;
@@ -26,7 +45,6 @@ void Sorting::initialize(double height,double width,QGraphicsScene* visualizingS
 }
 
 void Sorting::createRectangles(){
-
     rectWidth = sceneWidth / noOfRectangles;
 
 //resize sets the std::vector size
@@ -44,7 +62,7 @@ void Sorting::createRectangles(){
         height += heightDiff;
     }
 
-// The sorted rectHeight is mixed
+ //The sorted rectHeight is mixed
 
 //This is a random number engine class that generates pseudo-random numbers. (Found From StackOverflow)
     auto rng = std::default_random_engine {};
@@ -52,6 +70,24 @@ void Sorting::createRectangles(){
     updateDisplay(0,0,0,false);
 }
 
+void Sorting::createRectanglesFantasy()
+{
+    players = playerNames;
+
+    rectWidth = sceneWidth / fantasyPoints.size();
+
+//resize sets the std::vector size
+    rectangles.resize(fantasyPoints.size());
+
+    int largestData = *std::max_element(fantasyPoints.begin(),fantasyPoints.end());
+
+    int ratio = sceneHeight/largestData;
+
+    for(size_t i=0;i<fantasyPoints.size();i++)
+        rectHeight.push_back(fantasyPoints.at(i)*ratio);
+
+    updateDisplay(0,0,0,false);
+}
 
 void Sorting::selectionSort()
 {
@@ -69,6 +105,8 @@ void Sorting::selectionSort()
         processEvents();
 
         std::swap(rectHeight[i],rectHeight[minIndex]);
+        if(isFantasySelected)
+            std::swap(players[i],players[minIndex]);
 
         updateDisplay(i,i,minIndex,true);
         processEvents();
@@ -79,6 +117,7 @@ void Sorting::selectionSort()
 
 void Sorting::switchToQuickSort(){
     quickSort(rectHeight,0,rectHeight.size()-1);
+
 }
 
 
@@ -86,9 +125,21 @@ void Sorting::switchToMergeSort(){
      mergeSort(rectHeight,0,rectHeight.size()-1);
 }
 
+void Sorting::switchToFantasy()
+{
+    resetRectanglesFantasy();
+}
+
 
 void Sorting::setRectangles(int value){
     noOfRectangles = value;
+}
+
+void Sorting::resetRectanglesFantasy()
+{
+    rectHeight.clear();
+    createRectanglesFantasy();
+    isStopButtonPressed = false;
 }
 
 void Sorting::resetRectangles(){
@@ -159,7 +210,7 @@ int Sorting::partition(std::vector<double>&vec,int low,int high)
         processEvents();
         if(vec[i]<pivot)
         {
-            std::swap(vec[i],vec[pIndex]);
+            std::swap(vec[i],vec[pIndex]);         
             updateDisplay(low,i,high,true);
             processEvents();
             pIndex+=1;
@@ -266,6 +317,7 @@ void Sorting::mergeSortDisplay(int sorted)
     {
         p=new QGraphicsRectItem;
         p->setRect(k, (sceneHeight - rectHeight[j]), rectWidth , rectHeight[j]);
+
         if(j<=sorted)
         {
         p->setBrush(QBrush(GREEN));
@@ -307,11 +359,22 @@ void Sorting::updateDisplay(int sortedIntegers,int comp1,int comp2,bool toColor)
             p->setPen(QPen(BLACK));
 
             sortingScene->addItem(p);
+            if(isFantasySelected)
+            {
+                QGraphicsTextItem *text = sortingScene->addText(players[j]);
+                text->setTextWidth(rectWidth);
+                text->setPos(k,(sceneHeight-rectHeight[j]));
+            }
             j++;
             k += rectWidth;
 
         }
 
+}
+
+void Sorting::setFantasySelected(bool value)
+{
+    isFantasySelected = value;
 }
 
 

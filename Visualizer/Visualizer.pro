@@ -10,6 +10,7 @@ CONFIG += c++11
 
 SOURCES += \
     binaryTree.cpp \
+    jsondata.cpp \
     main.cpp \
     mainwidget.cpp \
     sorting.cpp \
@@ -18,6 +19,7 @@ SOURCES += \
 
 HEADERS += \
     binaryTree.h \
+    jsondata.h \
     mainwidget.h \
     sorting.h \
     sortwidget.h \
@@ -32,3 +34,6 @@ FORMS += \
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+RESOURCES += \
+    resource.qrc

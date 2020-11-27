@@ -172,10 +172,13 @@
    <property name="geometry">
     <rect>
      <x>1170</x>
-     <y>50</y>
+     <y>90</y>
      <width>111</width>
      <height>22</height>
     </rect>
+   </property>
+   <property name="currentIndex">
+    <number>0</number>
    </property>
    <item>
     <property name="text">
@@ -197,7 +200,7 @@
    <property name="geometry">
     <rect>
      <x>1080</x>
-     <y>50</y>
+     <y>90</y>
      <width>81</width>
      <height>21</height>
     </rect>
@@ -218,6 +221,42 @@
    <property name="text">
     <string>Quit</string>
    </property>
+  </widget>
+  <widget class="QLabel" name="label_3">
+   <property name="geometry">
+    <rect>
+     <x>1080</x>
+     <y>40</y>
+     <width>81</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Choose Data</string>
+   </property>
+  </widget>
+  <widget class="QComboBox" name="chooseData">
+   <property name="geometry">
+    <rect>
+     <x>1170</x>
+     <y>40</y>
+     <width>111</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <property name="currentIndex">
+    <number>0</number>
+   </property>
+   <item>
+    <property name="text">
+     <string>Random Data</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Fantasy</string>
+    </property>
+   </item>
   </widget>
  </widget>
  <resources/>

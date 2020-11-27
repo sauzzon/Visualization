@@ -1,0 +1,11 @@
+release/binaryTree.o
+release/jsondata.o
+release/main.o
+release/mainwidget.o
+release/sorting.o
+release/sortwidget.o
+release/treewidget.o
+release/qrc_resource.o
+release/moc_mainwidget.o
+release/moc_sortwidget.o
+release/moc_treewidget.o
