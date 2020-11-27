@@ -14,14 +14,14 @@ public:
     Sorting();
     void initialize(double,double,QGraphicsScene*);
     void createRectangles();
-    void createRectanglesFantasy();
+    void createRectanglesFantasy(std::vector<double> &);
     void switchToFantasy();
     void selectionSort();
     void switchToQuickSort();
     void switchToMergeSort();
     void setRectangles(int);
     void resetRectangles();
-    void resetRectanglesFantasy();
+    void resetRectanglesFantasy(int);
     void setDelay(int);
     void setStopButton();
     void setFantasySelected(bool);
@@ -50,6 +50,7 @@ private:
      int noOfRectangles;
      bool isFantasySelected = false;
      bool isStopButtonPressed = false;
+     double ratio;
 
      size_t findMinimum(size_t startingIndex);
 

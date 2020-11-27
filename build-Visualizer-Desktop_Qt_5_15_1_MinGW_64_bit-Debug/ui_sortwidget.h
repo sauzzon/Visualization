@@ -36,6 +36,8 @@ public:
     QPushButton *quitButton;
     QLabel *label_3;
     QComboBox *chooseData;
+    QComboBox *choosePoints;
+    QLabel *choosePointsLabel;
 
     void setupUi(QWidget *SortWidget)
     {
@@ -105,11 +107,20 @@ public:
         chooseData->addItem(QString());
         chooseData->setObjectName(QString::fromUtf8("chooseData"));
         chooseData->setGeometry(QRect(1170, 40, 111, 22));
+        choosePoints = new QComboBox(SortWidget);
+        choosePoints->addItem(QString());
+        choosePoints->addItem(QString());
+        choosePoints->setObjectName(QString::fromUtf8("choosePoints"));
+        choosePoints->setGeometry(QRect(1170, 100, 111, 22));
+        choosePointsLabel = new QLabel(SortWidget);
+        choosePointsLabel->setObjectName(QString::fromUtf8("choosePointsLabel"));
+        choosePointsLabel->setGeometry(QRect(1090, 100, 81, 21));
 
         retranslateUi(SortWidget);
 
         comboBox->setCurrentIndex(0);
         chooseData->setCurrentIndex(0);
+        choosePoints->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(SortWidget);
@@ -133,6 +144,10 @@ public:
         chooseData->setItemText(0, QCoreApplication::translate("SortWidget", "Random Data", nullptr));
         chooseData->setItemText(1, QCoreApplication::translate("SortWidget", "Fantasy", nullptr));
 
+        choosePoints->setItemText(0, QCoreApplication::translate("SortWidget", "Total Points", nullptr));
+        choosePoints->setItemText(1, QCoreApplication::translate("SortWidget", "Weekly Points", nullptr));
+
+        choosePointsLabel->setText(QCoreApplication::translate("SortWidget", "Weekly/Total", nullptr));
     } // retranslateUi
 
 };

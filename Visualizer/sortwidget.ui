@@ -258,6 +258,42 @@
     </property>
    </item>
   </widget>
+  <widget class="QComboBox" name="choosePoints">
+   <property name="geometry">
+    <rect>
+     <x>1170</x>
+     <y>100</y>
+     <width>111</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <property name="currentIndex">
+    <number>0</number>
+   </property>
+   <item>
+    <property name="text">
+     <string>Total Points</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Weekly Points</string>
+    </property>
+   </item>
+  </widget>
+  <widget class="QLabel" name="choosePointsLabel">
+   <property name="geometry">
+    <rect>
+     <x>1090</x>
+     <y>100</y>
+     <width>81</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Weekly/Total</string>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections/>
