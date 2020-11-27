@@ -74,24 +74,25 @@ void Sorting::createRectangles(){
     updateDisplay(0,0,0,false);
 }
 
-void Sorting::createRectanglesFantasy()
+void Sorting::createRectanglesFantasy(std::vector<double>&points)
 {
     players = playerNames;
 
-    rectWidth = sceneWidth / fantasyPoints.size();
+    rectWidth = sceneWidth / points.size();
 
 //resize sets the std::vector size
-    rectangles.resize(fantasyPoints.size());
+    rectangles.resize(points.size());
 
-    int largestData = *std::max_element(fantasyPoints.begin(),fantasyPoints.end());
+    int largestData = *std::max_element(points.begin(),points.end());
 
-    int ratio = sceneHeight/largestData;
+    ratio = sceneHeight/largestData;
 
-    for(size_t i=0;i<fantasyPoints.size();i++)
-        rectHeight.push_back(fantasyPoints.at(i)*ratio);
+    for(size_t i=0;i<points.size();i++)
+        rectHeight.push_back(points.at(i)*ratio);
 
     updateDisplay(0,0,0,false);
 }
+
 
 void Sorting::selectionSort()
 {
@@ -131,7 +132,8 @@ void Sorting::switchToMergeSort(){
 
 void Sorting::switchToFantasy()
 {
-    resetRectanglesFantasy();
+    //default when switching to fantasy is weekly points so, pass 0
+    resetRectanglesFantasy(0);
 }
 
 
@@ -139,10 +141,15 @@ void Sorting::setRectangles(int value){
     noOfRectangles = value;
 }
 
-void Sorting::resetRectanglesFantasy()
+void Sorting::resetRectanglesFantasy(int index)
 {
     rectHeight.clear();
-    createRectanglesFantasy();
+
+    if(index==0)
+        createRectanglesFantasy(totalPoints);
+    else if(index==1)
+        createRectanglesFantasy(fantasyPoints);
+
     isStopButtonPressed = false;
 }
 
@@ -365,7 +372,7 @@ void Sorting::updateDisplay(int sortedIntegers,int comp1,int comp2,bool toColor)
             sortingScene->addItem(p);
             if(isFantasySelected)
             {
-                QGraphicsTextItem *text = sortingScene->addText(players[j]);
+                QGraphicsTextItem *text = sortingScene->addText(players[j]+"\n\nPoints: "+QString::number(rectHeight[j]/ratio));
                 text->setTextWidth(rectWidth);
                 text->setPos(k,(sceneHeight-rectHeight[j]));
             }
@@ -375,7 +382,6 @@ void Sorting::updateDisplay(int sortedIntegers,int comp1,int comp2,bool toColor)
         }
 
 }
-
 void Sorting::setFantasySelected(bool value)
 {
     isFantasySelected = value;

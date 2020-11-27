@@ -19,6 +19,8 @@ SortWidget::SortWidget(QWidget *parent)
     double sceneWidth = ui->visualizingBackground->size().width();
 
     sorting = new Sorting;
+    ui->choosePoints->hide();
+    ui->choosePointsLabel->hide();
     sorting->initialize(sceneHeight,sceneWidth,visualizingScene);
 
 }
@@ -58,7 +60,7 @@ void SortWidget::on_resetButton_clicked()
    if(ui->chooseData->currentIndex()==0)
     sorting->resetRectangles();
    else if(ui->chooseData->currentIndex()==1)
-    sorting->resetRectanglesFantasy();
+    sorting->resetRectanglesFantasy(ui->choosePoints->currentIndex());
 }
 
 void SortWidget::on_delaySlider_valueChanged(int value)
@@ -86,6 +88,8 @@ void SortWidget::on_chooseData_currentIndexChanged(int index)
         ui->label_2->show();
         ui->comboBox->show();
         ui->slider->show();
+        ui->choosePoints->hide();
+        ui->choosePointsLabel->hide();
         ui->delaySlider->setGeometry(1120,250,1171,31);
         ui->delayLabel->setGeometry(1180,220,81,21);
         sorting->setFantasySelected(false);
@@ -97,9 +101,17 @@ void SortWidget::on_chooseData_currentIndexChanged(int index)
         ui->label_2->hide();
         ui->comboBox->hide();
         ui->slider->hide();
-        ui->delayLabel->setGeometry(1150,140,141,21);
-        ui->delaySlider->setGeometry(1120,180,171,31);
+        ui->choosePoints->show();
+        ui->choosePointsLabel->show();
+        ui->delayLabel->setGeometry(1150,170,141,21);
+        ui->delaySlider->setGeometry(1120,210,171,31);
         sorting->setFantasySelected(true);
         sorting->switchToFantasy();
     }
+}
+
+void SortWidget::on_choosePoints_currentIndexChanged(int index)
+{
+    sorting->resetRectanglesFantasy(index);
+
 }
