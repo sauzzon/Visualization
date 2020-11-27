@@ -14,7 +14,7 @@ class SortWidget : public QWidget
     Q_OBJECT
 
 public:
-    SortWidget(QWidget *parent = nullptr);
+    SortWidget(std::vector<double>,std::vector<double>,std::vector<QString>,QWidget *parent = nullptr);
     ~SortWidget();
 
 private slots:
@@ -38,5 +38,9 @@ private:
     Ui::SortWidget *ui;
     QGraphicsScene *visualizingScene;
     Sorting *sorting;
+
+    std::vector<double> fantasyPoints;
+    std::vector<double> totalPoints;
+    std::vector<QString> playerNames;
 };
 #endif // SORTWIDGET_H

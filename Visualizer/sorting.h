@@ -5,14 +5,12 @@
 #include<QtWidgets>
 #include<QWidget>
 
-#include<jsondata.h>
-
 class Sorting
 {
 
 public:
     Sorting();
-    void initialize(double,double,QGraphicsScene*);
+    void initialize(double,double,QGraphicsScene*,std::vector<double>,std::vector<double>,std::vector<QString>);
     void createRectangles();
     void createRectanglesFantasy(std::vector<double> &);
     void switchToFantasy();
@@ -30,8 +28,6 @@ public:
 private:
      QGraphicsScene* sortingScene;
 
-     JSONData* fantasy;
-     void getFantasyData();
      std::vector<double> fantasyPoints;
      std::vector<double> totalPoints;
      std::vector<QString> playerNames;
