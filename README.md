@@ -10,6 +10,8 @@ Sorting Algorithms Visualized:
 Tree Algorithms Visualized:
 1. Insertion, Deletion and Searching Operations in Binary Search Tree
 
+Api from https://fantasy.premierleague.com/ is used to extract live data of FPL points of the league and is visualized.
+
 Contributors:
 1. Saujan Tiwari
 2. Sandeep Acharya
