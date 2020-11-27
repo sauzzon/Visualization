@@ -90,7 +90,7 @@ void SortWidget::on_chooseData_currentIndexChanged(int index)
         ui->slider->show();
         ui->choosePoints->hide();
         ui->choosePointsLabel->hide();
-        ui->delaySlider->setGeometry(1120,250,1171,31);
+        ui->delaySlider->setGeometry(1120,250,171,31);
         ui->delayLabel->setGeometry(1180,220,81,21);
         sorting->setFantasySelected(false);
         sorting->resetRectangles();
