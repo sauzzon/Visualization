@@ -76,10 +76,21 @@ void Sorting::createRectanglesFantasy(std::vector<double>&points)
     double maxHeight = sceneHeight;
     double minHeight = 0.25*sceneHeight;
 
-    for(size_t i=0;i<points.size();i++){
-        double pointHeight =minHeight+((points.at(i)-minPoint)/(maxPoint-minPoint))*(maxHeight-minHeight);
-        rectHeight.push_back(pointHeight);
+//case when gameweek is just started and everbody has same points
+
+    if(maxPoint == minPoint){
+        for(size_t i=0;i<points.size();i++){
+            rectHeight.push_back(0.5*sceneHeight);
+        }
     }
+    else{
+
+        for(size_t i=0;i<points.size();i++){
+            double pointHeight =minHeight+((points.at(i)-minPoint)/(maxPoint-minPoint))*(maxHeight-minHeight);
+            rectHeight.push_back(pointHeight);
+        }
+    }
+
 
  //arranging data alphabetically
     for (size_t i= 0; i <players.size();i++)
