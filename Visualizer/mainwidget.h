@@ -32,12 +32,8 @@ private:
     SortWidget* sortWidget;
     TreeWidget* treeWidget;
 
-    void readJSON();
-    QString myURL ="https://fantasy.premierleague.com/api/leagues-classic/275957/standings/";
-    std::vector<double> weeklyPoints;
-    std::vector<double> totalPoints;
-    std::vector<QString> playerNames;
-
+    void connectServer();
+    QString myURL ="https://fantasy.premierleague.com/api/leagues-classic/196371/standings/";
 };
 
 #endif // MAINWIDGET_H

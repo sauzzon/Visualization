@@ -5,11 +5,11 @@ MainWidget::MainWidget(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::MainWidget)
 {
+    connectServer();
     ui->setupUi(this);
-    readJSON();
 }
 
-void MainWidget::readJSON(){
+void MainWidget::connectServer(){
 
         QNetworkAccessManager* man = new QNetworkAccessManager(this);
         connect(man,&QNetworkAccessManager::finished,this,&MainWidget::dataDownloadFinished);
@@ -32,13 +32,16 @@ void MainWidget::dataDownloadFinished(QNetworkReply* reply){
       QJsonValue resultValue = standings.value("results");
       QJsonArray array = resultValue.toArray();
 
+      std::vector<double> weeklyPoints;
+      std::vector<double> totalPoints;
+      std::vector<QString> playerNames;
+
 // iterating through json array and putting the name of country and its population in vector
        foreach (const QJsonValue & v, array){
                 weeklyPoints.push_back(v.toObject().value("event_total").toDouble());
                 totalPoints.push_back(v.toObject().value("total").toDouble());
                 playerNames.push_back(v.toObject().value("player_name").toString());
        }
-
        sortWidget = new SortWidget(weeklyPoints,totalPoints,playerNames);
 //printing the data in console
      QTextStream out(stdout);

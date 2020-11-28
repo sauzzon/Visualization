@@ -38,9 +38,5 @@ private:
     Ui::SortWidget *ui;
     QGraphicsScene *visualizingScene;
     Sorting *sorting;
-
-    std::vector<double> fantasyPoints;
-    std::vector<double> totalPoints;
-    std::vector<QString> playerNames;
 };
 #endif // SORTWIDGET_H

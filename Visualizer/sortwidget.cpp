@@ -9,11 +9,6 @@ SortWidget::SortWidget(std::vector<double> gwPoint,std::vector<double> totPoint,
     , ui(new Ui::SortWidget)
 {
     ui->setupUi(this);
-
-    fantasyPoints = gwPoint;
-    totalPoints = totPoint;
-    playerNames = names;
-
 //creating visualizing scene and setting it to visualizing background
     visualizingScene = new QGraphicsScene(this);
     ui->visualizingBackground->setScene(visualizingScene);
@@ -25,7 +20,7 @@ SortWidget::SortWidget(std::vector<double> gwPoint,std::vector<double> totPoint,
     sorting = new Sorting;
     ui->choosePoints->hide();
     ui->choosePointsLabel->hide();
-    sorting->initialize(sceneHeight,sceneWidth,visualizingScene,fantasyPoints,totalPoints,playerNames);
+    sorting->initialize(sceneHeight,sceneWidth,visualizingScene,gwPoint,totPoint,names);
 
 }
 
