@@ -154,6 +154,11 @@ void Sorting::switchToQuickSort(){
 
 void Sorting::switchToMergeSort(){
      mergeSort(rectHeight,0,rectHeight.size()-1);
+     if(!isStopButtonPressed){
+         isSortingCompleted = true;
+         updateDisplay(0,0,0,false);
+         isSortingCompleted = false;
+     }
 }
 
 void Sorting::switchToFantasy()
@@ -306,6 +311,8 @@ void Sorting::mergeSortCombiner(std::vector<double> &rectangleHeight,int startId
             temp.push_back(rectangleHeight[j]);
             j+=1;
         }
+        updateDisplay(startIdx,i,j,true);
+        processEvents();
         index=index+1;
     }
 
@@ -317,6 +324,8 @@ void Sorting::mergeSortCombiner(std::vector<double> &rectangleHeight,int startId
             j+=1;
             index+=1;
         }
+        updateDisplay(startIdx,i,j,true);
+        processEvents();
 
     }
     else
@@ -327,51 +336,52 @@ void Sorting::mergeSortCombiner(std::vector<double> &rectangleHeight,int startId
             i+=1;
             index+=1;
         }
+        updateDisplay(startIdx,i,j,true);
+        processEvents();
     }
 
     int k=0;
     for(k=0;k<index;k++)
     {
         rectangleHeight[startIdx]=temp[k];
+        updateDisplay(startIdx,0,0,true);
+        processEvents();
         startIdx++;
     }
 
-    mergeSortDisplay(endIdx);
-    processEvents();
-
 }
 
 
-//updateDisplay for mergeSort test purpose
-void Sorting::mergeSortDisplay(int sorted)
-{
-    sortingScene->clear();
+////updateDisplay for mergeSort test purpose
+//void Sorting::mergeSortDisplay(int sorted)
+//{
+//    sortingScene->clear();
 
-    //displaying the rectangles in scene
-        auto j = 0;
-        auto k = 0.0;
+//    //displaying the rectangles in scene
+//        auto j = 0;
+//        auto k = 0.0;
 
-    for(auto &p:rectangles)
-    {
-        p=new QGraphicsRectItem;
-        p->setRect(k, (sceneHeight - rectHeight[j]), rectWidth , rectHeight[j]);
+//    for(auto &p:rectangles)
+//    {
+//        p=new QGraphicsRectItem;
+//        p->setRect(k, (sceneHeight - rectHeight[j]), rectWidth , rectHeight[j]);
 
-        if(j<=sorted)
-        {
-        p->setBrush(QBrush(GREEN));
-        }
-        else
-        {
-        p->setBrush(QBrush(SKYBLUE));
-        }
-        p->setPen(QPen(BLACK));
+//        if(j<=sorted)
+//        {
+//        p->setBrush(QBrush(GREEN));
+//        }
+//        else
+//        {
+//        p->setBrush(QBrush(SKYBLUE));
+//        }
+//        p->setPen(QPen(BLACK));
 
-        sortingScene->addItem(p);
-        j++;
-        k += rectWidth;
+//        sortingScene->addItem(p);
+//        j++;
+//        k += rectWidth;
 
-    }
-}
+//    }
+//}
 
 
 void Sorting::updateDisplay(int sortedIntegers,int comp1,int comp2,bool toColor)
