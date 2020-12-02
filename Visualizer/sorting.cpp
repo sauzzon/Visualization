@@ -7,7 +7,7 @@
 #define BLACK QColor(0,0,0)
 #define RED QColor(255,0,0)
 #define GREEN QColor(0,255,0)
-
+#define BLUE QColor(0,0,255)
 
 Sorting::Sorting()
 {
@@ -249,18 +249,18 @@ int Sorting::partition(std::vector<double>&vec,int low,int high)
             return 5;
         }
 
-        updateDisplay(low,i,high,true);
+        updateDisplay(low,i,pIndex,true,high);
         processEvents();
         if(vec[i]<pivot)
         {
             std::swap(vec[i],vec[pIndex]);         
-            updateDisplay(low,i,high,true);
+            updateDisplay(low,i,pIndex,true,high);
             processEvents();
             pIndex+=1;
         }
     }
     std::swap(vec[pIndex],vec[high]);
-    updateDisplay(low,low,high,true);
+    updateDisplay(low,pIndex,high,true,high);
     processEvents();
 
     return pIndex;
@@ -351,40 +351,7 @@ void Sorting::mergeSortCombiner(std::vector<double> &rectangleHeight,int startId
 
 }
 
-
-////updateDisplay for mergeSort test purpose
-//void Sorting::mergeSortDisplay(int sorted)
-//{
-//    sortingScene->clear();
-
-//    //displaying the rectangles in scene
-//        auto j = 0;
-//        auto k = 0.0;
-
-//    for(auto &p:rectangles)
-//    {
-//        p=new QGraphicsRectItem;
-//        p->setRect(k, (sceneHeight - rectHeight[j]), rectWidth , rectHeight[j]);
-
-//        if(j<=sorted)
-//        {
-//        p->setBrush(QBrush(GREEN));
-//        }
-//        else
-//        {
-//        p->setBrush(QBrush(SKYBLUE));
-//        }
-//        p->setPen(QPen(BLACK));
-
-//        sortingScene->addItem(p);
-//        j++;
-//        k += rectWidth;
-
-//    }
-//}
-
-
-void Sorting::updateDisplay(int sortedIntegers,int comp1,int comp2,bool toColor)
+void Sorting::updateDisplay(int sortedIntegers,int comp1,int comp2,bool toColor,int qSortPivot)
 {
     sortingScene->clear();
     //displaying the rectangles in scene
@@ -397,6 +364,8 @@ void Sorting::updateDisplay(int sortedIntegers,int comp1,int comp2,bool toColor)
             p = new QGraphicsRectItem;
             p->setRect(k, (sceneHeight - rectHeight[j]), rectWidth , rectHeight[j]);
             p->setBrush(QBrush(SKYBLUE));
+            if(qSortPivot<noOfRectangles)
+                rectangles.at(qSortPivot)->setBrush(QBrush(BLUE));
 
             if((j ==comp1 or j == comp2) and toColor == true)
                 p->setBrush(QBrush(RED));
