@@ -58,7 +58,7 @@ private:
      void mergeSortCombiner(std::vector<double> &rectHeight,int startIdx,int midIdx,int endIdx);
      void mergeSortDisplay(int sorted);
 
-     void updateDisplay(int,int,int,bool);
+     void updateDisplay(int,int,int,bool,int qSortPivot=1000); //using 1000 as a default value;
      void processEvents();
 
 };
