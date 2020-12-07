@@ -66,3 +66,18 @@ void TreeWidget::on_deleteButton_clicked()
     ui->deleteValue->setText("");
 
 }
+
+void TreeWidget::on_preorderButton_clicked()
+{
+    tree->preorderTraversal();
+}
+
+void TreeWidget::on_postorderButton_clicked()
+{
+    tree->postorderTraversal();
+}
+
+void TreeWidget::on_inorderButton_clicked()
+{
+    tree->inorderTraversal();
+}

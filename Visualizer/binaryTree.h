@@ -38,6 +38,9 @@ public:
     double findWidthDiff(double);
     void setDelay(int);
     void processEvents();
+    void preorderTraversal();
+    void postorderTraversal();
+    void inorderTraversal();
 
 private:
     BSTNode* root;
@@ -53,6 +56,9 @@ private:
     bool isDeleteNodeFound = false;
     QLabel* treeStatus;
     void setTreeStatus(QString);
+    void preorderTraversalHelper(BSTNode*);
+    void postorderTraversalHelper(BSTNode*);
+    void inorderTraversalHelper(BSTNode*);
 
 };
 
