@@ -234,7 +234,7 @@ BSTNode::BSTNode()
  {
      if(node==nullptr)
          return;
-     draw(node->Key,true);
+     draw(node->Key,true,true);
      processEvents();
      preorderTraversalHelper(node->Left);
      preorderTraversalHelper(node->Right);
@@ -246,7 +246,7 @@ BSTNode::BSTNode()
          return;
      postorderTraversalHelper(node->Left);
      postorderTraversalHelper(node->Right);
-     draw(node->Key,true);
+     draw(node->Key,true,true);
      processEvents();
  }
  void BST::inorderTraversalHelper(BSTNode* node)
@@ -254,7 +254,7 @@ BSTNode::BSTNode()
      if(node==nullptr)
          return;
      inorderTraversalHelper(node->Left);
-     draw(node->Key,true);
+     draw(node->Key,true,true);
      processEvents();
      inorderTraversalHelper(node->Right);
  }
@@ -280,6 +280,14 @@ BSTNode::BSTNode()
     treeSceneHeight=height;
     treeSceneWidth=width-50;
     treeStatus = status;
+    setDelay(0);
+    Insert(10);
+    Insert(5);
+    Insert(20);
+    Insert(4);
+    Insert(6);
+    Insert(25);
+    Insert(17);
     setDelay(1000);
  }
 
@@ -287,7 +295,7 @@ BSTNode::BSTNode()
      treeStatus->setText(message);
  }
 
- void BST::draw(int coloringKey,bool toColor)
+ void BST::draw(int coloringKey,bool toColor,bool traversal)
  {
     if(!toColor) treeScene->clear();
     double xCo = treeSceneWidth/2;
@@ -296,12 +304,12 @@ BSTNode::BSTNode()
     double heightDiff = treeSceneHeight/treeHeight(root);
 
     double widthDiff = findWidthDiff(xCo);
-    drawNode(root,xCo,yCo,widthDiff,heightDiff,coloringKey,toColor);
+    drawNode(root,xCo,yCo,widthDiff,heightDiff,coloringKey,toColor,traversal);
 
  }
 
 
- void BST::drawNode(BSTNode *node, double x, double y,double widthDiff,double heightDiff,int keyToBeColored, bool isNodeToBeColored)
+ void BST::drawNode(BSTNode *node, double x, double y,double widthDiff,double heightDiff,int keyToBeColored, bool isNodeToBeColored,bool isTraversalDone)
  {
      if(node == nullptr) return;
 
@@ -338,6 +346,10 @@ BSTNode::BSTNode()
 
       if(isNodeToBeColored and keyToBeColored == node->Left->Key) edgeColor=RED;
       else edgeColor=BLACK;
+
+      if(isTraversalDone) edgeColor = BLACK;
+
+
        treeScene->addLine(textRect.bottomLeft().x(),textRect.bottomLeft().y(),x-widthDiff+textRect.width(),y+heightDiff,QPen(edgeColor));
       }
 
@@ -347,13 +359,17 @@ BSTNode::BSTNode()
 
       if(isNodeToBeColored and keyToBeColored == node->Right->Key) edgeColor =RED;
       else edgeColor = BLACK;
+
+      if(isTraversalDone) edgeColor = BLACK;
+
+
        treeScene->addLine(textRect.bottomRight().x(),textRect.bottomRight().y(),x+widthDiff,y+heightDiff,QPen(edgeColor));
 
        }
 
 
-     drawNode(node->Left,x-widthDiff,y+heightDiff,widthDiff/2,heightDiff,keyToBeColored,isNodeToBeColored);
-     drawNode(node->Right,x+widthDiff,y+heightDiff,widthDiff/2,heightDiff,keyToBeColored,isNodeToBeColored);
+     drawNode(node->Left,x-widthDiff,y+heightDiff,widthDiff/2,heightDiff,keyToBeColored,isNodeToBeColored,isTraversalDone);
+     drawNode(node->Right,x+widthDiff,y+heightDiff,widthDiff/2,heightDiff,keyToBeColored,isNodeToBeColored,isTraversalDone);
  }
 
  void BST::setDelay(int value)

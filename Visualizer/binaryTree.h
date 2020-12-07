@@ -29,8 +29,8 @@ public:
      BST();
     ~BST();
     void initializer(QGraphicsScene*,double,double,QLabel*);
-    void draw(int,bool);
-    void drawNode(BSTNode* ,double,double,double,double,int,bool);
+    void draw(int,bool,bool traverse=false);
+    void drawNode(BSTNode* ,double,double,double,double,int,bool,bool);
     void Insert(int key);
     void Search(int key);
     void Delete(int key);
