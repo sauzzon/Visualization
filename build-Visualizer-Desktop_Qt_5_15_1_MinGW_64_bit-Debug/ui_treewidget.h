@@ -34,6 +34,9 @@ public:
     QLineEdit *deleteValue;
     QPushButton *deleteButton;
     QLabel *treeStatus;
+    QPushButton *preorderButton;
+    QPushButton *postorderButton;
+    QPushButton *inorderButton;
 
     void setupUi(QWidget *TreeWidget)
     {
@@ -47,22 +50,22 @@ public:
         sceneFrame->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
         quitButton = new QPushButton(TreeWidget);
         quitButton->setObjectName(QString::fromUtf8("quitButton"));
-        quitButton->setGeometry(QRect(1250, 350, 75, 31));
+        quitButton->setGeometry(QRect(1240, 480, 75, 31));
         insertValue = new QLineEdit(TreeWidget);
         insertValue->setObjectName(QString::fromUtf8("insertValue"));
-        insertValue->setGeometry(QRect(1230, 60, 121, 21));
+        insertValue->setGeometry(QRect(1210, 60, 121, 21));
         insertButton = new QPushButton(TreeWidget);
         insertButton->setObjectName(QString::fromUtf8("insertButton"));
-        insertButton->setGeometry(QRect(1250, 90, 81, 23));
+        insertButton->setGeometry(QRect(1230, 90, 81, 23));
         searchValue = new QLineEdit(TreeWidget);
         searchValue->setObjectName(QString::fromUtf8("searchValue"));
-        searchValue->setGeometry(QRect(1230, 130, 121, 20));
+        searchValue->setGeometry(QRect(1210, 130, 121, 20));
         searchButton = new QPushButton(TreeWidget);
         searchButton->setObjectName(QString::fromUtf8("searchButton"));
-        searchButton->setGeometry(QRect(1250, 160, 81, 23));
+        searchButton->setGeometry(QRect(1230, 160, 81, 23));
         horizontalSlider = new QSlider(TreeWidget);
         horizontalSlider->setObjectName(QString::fromUtf8("horizontalSlider"));
-        horizontalSlider->setGeometry(QRect(1230, 310, 121, 22));
+        horizontalSlider->setGeometry(QRect(1210, 310, 121, 22));
         horizontalSlider->setMinimum(100);
         horizontalSlider->setMaximum(3000);
         horizontalSlider->setSingleStep(100);
@@ -71,13 +74,13 @@ public:
         horizontalSlider->setOrientation(Qt::Horizontal);
         delayLabel = new QLabel(TreeWidget);
         delayLabel->setObjectName(QString::fromUtf8("delayLabel"));
-        delayLabel->setGeometry(QRect(1250, 290, 101, 16));
+        delayLabel->setGeometry(QRect(1230, 290, 101, 16));
         deleteValue = new QLineEdit(TreeWidget);
         deleteValue->setObjectName(QString::fromUtf8("deleteValue"));
-        deleteValue->setGeometry(QRect(1230, 200, 121, 20));
+        deleteValue->setGeometry(QRect(1210, 200, 121, 20));
         deleteButton = new QPushButton(TreeWidget);
         deleteButton->setObjectName(QString::fromUtf8("deleteButton"));
-        deleteButton->setGeometry(QRect(1250, 230, 75, 23));
+        deleteButton->setGeometry(QRect(1230, 230, 75, 23));
         treeStatus = new QLabel(TreeWidget);
         treeStatus->setObjectName(QString::fromUtf8("treeStatus"));
         treeStatus->setGeometry(QRect(740, 10, 451, 21));
@@ -85,6 +88,15 @@ public:
         font.setPointSize(14);
         treeStatus->setFont(font);
         treeStatus->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
+        preorderButton = new QPushButton(TreeWidget);
+        preorderButton->setObjectName(QString::fromUtf8("preorderButton"));
+        preorderButton->setGeometry(QRect(1220, 350, 111, 23));
+        postorderButton = new QPushButton(TreeWidget);
+        postorderButton->setObjectName(QString::fromUtf8("postorderButton"));
+        postorderButton->setGeometry(QRect(1220, 390, 111, 23));
+        inorderButton = new QPushButton(TreeWidget);
+        inorderButton->setObjectName(QString::fromUtf8("inorderButton"));
+        inorderButton->setGeometry(QRect(1220, 430, 111, 23));
 
         retranslateUi(TreeWidget);
 
@@ -100,6 +112,9 @@ public:
         delayLabel->setText(QCoreApplication::translate("TreeWidget", "Delay = 1000 ms", nullptr));
         deleteButton->setText(QCoreApplication::translate("TreeWidget", "Delete", nullptr));
         treeStatus->setText(QCoreApplication::translate("TreeWidget", "Binary Search Tree", nullptr));
+        preorderButton->setText(QCoreApplication::translate("TreeWidget", "Preorder Traversal", nullptr));
+        postorderButton->setText(QCoreApplication::translate("TreeWidget", "Posrorder Traversal", nullptr));
+        inorderButton->setText(QCoreApplication::translate("TreeWidget", "Inorder Traversal", nullptr));
     } // retranslateUi
 
 };

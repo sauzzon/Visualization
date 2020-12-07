@@ -230,7 +230,50 @@ BSTNode::BSTNode()
      }
  }
 
+ void BST::preorderTraversalHelper(BSTNode* node)
+ {
+     if(node==nullptr)
+         return;
+     draw(node->Key,true);
+     processEvents();
+     preorderTraversalHelper(node->Left);
+     preorderTraversalHelper(node->Right);
+ }
 
+ void BST::postorderTraversalHelper(BSTNode* node)
+ {
+     if(node==nullptr)
+         return;
+     postorderTraversalHelper(node->Left);
+     postorderTraversalHelper(node->Right);
+     draw(node->Key,true);
+     processEvents();
+ }
+ void BST::inorderTraversalHelper(BSTNode* node)
+ {
+     if(node==nullptr)
+         return;
+     inorderTraversalHelper(node->Left);
+     draw(node->Key,true);
+     processEvents();
+     inorderTraversalHelper(node->Right);
+ }
+ void BST::preorderTraversal()
+ {
+     setTreeStatus("PREORDER TRAVERSAL");
+     preorderTraversalHelper(root);
+ }
+ void BST::postorderTraversal()
+ {
+     setTreeStatus("POSTORDER TRAVERSAL");
+     postorderTraversalHelper(root);
+
+ }
+ void BST::inorderTraversal()
+ {
+     setTreeStatus("INORDER TRAVERSAL");
+     inorderTraversalHelper(root);
+ }
  void BST::initializer(QGraphicsScene* mainScene,double width,double height,QLabel* status)
  {
     treeScene=mainScene;
