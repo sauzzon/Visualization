@@ -364,9 +364,7 @@ void Sorting::updateDisplay(int sortedIntegers,int comp1,int comp2,bool toColor,
             p = new QGraphicsRectItem;
             p->setRect(k, (sceneHeight - rectHeight[j]), rectWidth , rectHeight[j]);
             p->setBrush(QBrush(SKYBLUE));
-            if(qSortPivot<noOfRectangles)
-                rectangles.at(qSortPivot)->setBrush(QBrush(BLUE));
-
+           if(j==qSortPivot) p->setBrush(QBrush(BLUE));
             if((j ==comp1 or j == comp2) and toColor == true)
                 p->setBrush(QBrush(RED));
             if(j<sortedIntegers and toColor ==true)
