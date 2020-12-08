@@ -67,17 +67,12 @@ void TreeWidget::on_deleteButton_clicked()
 
 }
 
-void TreeWidget::on_preorderButton_clicked()
+void TreeWidget::on_comboBox_activated(int index)
 {
-    tree->preorderTraversal();
-}
-
-void TreeWidget::on_postorderButton_clicked()
-{
-    tree->postorderTraversal();
-}
-
-void TreeWidget::on_inorderButton_clicked()
-{
-    tree->inorderTraversal();
+    if(index==0)
+        tree->preorderTraversal();
+    else if(index==1)
+        tree->inorderTraversal();
+    else if(index==2)
+        tree->postorderTraversal();
 }

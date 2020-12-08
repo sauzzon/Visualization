@@ -28,11 +28,7 @@ private slots:
 
     void on_deleteButton_clicked();
 
-    void on_preorderButton_clicked();
-
-    void on_postorderButton_clicked();
-
-    void on_inorderButton_clicked();
+    void on_comboBox_activated(int index);
 
 private:
     Ui::TreeWidget *ui;
