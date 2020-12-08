@@ -33,7 +33,7 @@
    <property name="geometry">
     <rect>
      <x>1240</x>
-     <y>440</y>
+     <y>470</y>
      <width>75</width>
      <height>31</height>
     </rect>
@@ -177,38 +177,38 @@
    <property name="geometry">
     <rect>
      <x>1220</x>
-     <y>380</y>
-     <width>121</width>
+     <y>360</y>
+     <width>111</width>
      <height>22</height>
     </rect>
    </property>
    <item>
     <property name="text">
-     <string>Preorder Traversal</string>
+     <string>     Pre Order</string>
     </property>
    </item>
    <item>
     <property name="text">
-     <string>Inorder Traversal</string>
+     <string>     In Order</string>
     </property>
    </item>
    <item>
     <property name="text">
-     <string>Postorder Traversal</string>
+     <string>     Post Order</string>
     </property>
    </item>
   </widget>
-  <widget class="QLabel" name="label">
+  <widget class="QPushButton" name="traverseButton">
    <property name="geometry">
     <rect>
      <x>1240</x>
-     <y>350</y>
-     <width>101</width>
-     <height>21</height>
+     <y>400</y>
+     <width>75</width>
+     <height>23</height>
     </rect>
    </property>
    <property name="text">
-    <string>Tree Traversal</string>
+    <string>Traverse</string>
    </property>
   </widget>
  </widget>

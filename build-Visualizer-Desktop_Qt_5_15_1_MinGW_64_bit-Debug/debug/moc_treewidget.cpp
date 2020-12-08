@@ -22,8 +22,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_TreeWidget_t {
-    QByteArrayData data[10];
-    char stringdata0[173];
+    QByteArrayData data[9];
+    char stringdata0[171];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -40,15 +40,14 @@ QT_MOC_LITERAL(4, 58, 23), // "on_searchButton_clicked"
 QT_MOC_LITERAL(5, 82, 32), // "on_horizontalSlider_valueChanged"
 QT_MOC_LITERAL(6, 115, 5), // "value"
 QT_MOC_LITERAL(7, 121, 23), // "on_deleteButton_clicked"
-QT_MOC_LITERAL(8, 145, 21), // "on_comboBox_activated"
-QT_MOC_LITERAL(9, 167, 5) // "index"
+QT_MOC_LITERAL(8, 145, 25) // "on_traverseButton_clicked"
 
     },
     "TreeWidget\0on_quitButton_clicked\0\0"
     "on_insertButton_clicked\0on_searchButton_clicked\0"
     "on_horizontalSlider_valueChanged\0value\0"
-    "on_deleteButton_clicked\0on_comboBox_activated\0"
-    "index"
+    "on_deleteButton_clicked\0"
+    "on_traverseButton_clicked"
 };
 #undef QT_MOC_LITERAL
 
@@ -71,7 +70,7 @@ static const uint qt_meta_data_TreeWidget[] = {
        4,    0,   46,    2, 0x08 /* Private */,
        5,    1,   47,    2, 0x08 /* Private */,
        7,    0,   50,    2, 0x08 /* Private */,
-       8,    1,   51,    2, 0x08 /* Private */,
+       8,    0,   51,    2, 0x08 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
@@ -79,7 +78,7 @@ static const uint qt_meta_data_TreeWidget[] = {
     QMetaType::Void,
     QMetaType::Void, QMetaType::Int,    6,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::Int,    9,
+    QMetaType::Void,
 
        0        // eod
 };
@@ -95,7 +94,7 @@ void TreeWidget::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 2: _t->on_searchButton_clicked(); break;
         case 3: _t->on_horizontalSlider_valueChanged((*reinterpret_cast< int(*)>(_a[1]))); break;
         case 4: _t->on_deleteButton_clicked(); break;
-        case 5: _t->on_comboBox_activated((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 5: _t->on_traverseButton_clicked(); break;
         default: ;
         }
     }

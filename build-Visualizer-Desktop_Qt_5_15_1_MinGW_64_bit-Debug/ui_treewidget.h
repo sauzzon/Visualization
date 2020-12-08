@@ -36,7 +36,7 @@ public:
     QPushButton *deleteButton;
     QLabel *treeStatus;
     QComboBox *comboBox;
-    QLabel *label;
+    QPushButton *traverseButton;
 
     void setupUi(QWidget *TreeWidget)
     {
@@ -50,7 +50,7 @@ public:
         sceneFrame->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
         quitButton = new QPushButton(TreeWidget);
         quitButton->setObjectName(QString::fromUtf8("quitButton"));
-        quitButton->setGeometry(QRect(1240, 440, 75, 31));
+        quitButton->setGeometry(QRect(1240, 470, 75, 31));
         insertValue = new QLineEdit(TreeWidget);
         insertValue->setObjectName(QString::fromUtf8("insertValue"));
         insertValue->setGeometry(QRect(1210, 60, 121, 21));
@@ -93,10 +93,10 @@ public:
         comboBox->addItem(QString());
         comboBox->addItem(QString());
         comboBox->setObjectName(QString::fromUtf8("comboBox"));
-        comboBox->setGeometry(QRect(1220, 380, 121, 22));
-        label = new QLabel(TreeWidget);
-        label->setObjectName(QString::fromUtf8("label"));
-        label->setGeometry(QRect(1240, 350, 101, 21));
+        comboBox->setGeometry(QRect(1220, 360, 111, 22));
+        traverseButton = new QPushButton(TreeWidget);
+        traverseButton->setObjectName(QString::fromUtf8("traverseButton"));
+        traverseButton->setGeometry(QRect(1240, 400, 75, 23));
 
         retranslateUi(TreeWidget);
 
@@ -112,11 +112,11 @@ public:
         delayLabel->setText(QCoreApplication::translate("TreeWidget", "Delay = 1000 ms", nullptr));
         deleteButton->setText(QCoreApplication::translate("TreeWidget", "Delete", nullptr));
         treeStatus->setText(QCoreApplication::translate("TreeWidget", "Binary Search Tree", nullptr));
-        comboBox->setItemText(0, QCoreApplication::translate("TreeWidget", "Preorder Traversal", nullptr));
-        comboBox->setItemText(1, QCoreApplication::translate("TreeWidget", "Inorder Traversal", nullptr));
-        comboBox->setItemText(2, QCoreApplication::translate("TreeWidget", "Postorder Traversal", nullptr));
+        comboBox->setItemText(0, QCoreApplication::translate("TreeWidget", "     Pre Order", nullptr));
+        comboBox->setItemText(1, QCoreApplication::translate("TreeWidget", "     In Order", nullptr));
+        comboBox->setItemText(2, QCoreApplication::translate("TreeWidget", "     Post Order", nullptr));
 
-        label->setText(QCoreApplication::translate("TreeWidget", "Tree Traversal", nullptr));
+        traverseButton->setText(QCoreApplication::translate("TreeWidget", "Traverse", nullptr));
     } // retranslateUi
 
 };

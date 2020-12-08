@@ -189,7 +189,7 @@ BSTNode::BSTNode()
                  int minimum = findMin(node->Right);
                  Search(node->Right,minimum);
                  node->Key =minimum;
-                 draw(0,false);
+                 //draw(0,false);
                  processEvents();
                  node->Right=Delete(node->Right,node->Key);
 
