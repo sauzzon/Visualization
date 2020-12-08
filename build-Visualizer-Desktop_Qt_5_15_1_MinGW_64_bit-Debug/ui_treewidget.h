@@ -11,6 +11,7 @@
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QComboBox>
 #include <QtWidgets/QGraphicsView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QLineEdit>
@@ -34,9 +35,8 @@ public:
     QLineEdit *deleteValue;
     QPushButton *deleteButton;
     QLabel *treeStatus;
-    QPushButton *preorderButton;
-    QPushButton *postorderButton;
-    QPushButton *inorderButton;
+    QComboBox *comboBox;
+    QLabel *label;
 
     void setupUi(QWidget *TreeWidget)
     {
@@ -50,7 +50,7 @@ public:
         sceneFrame->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
         quitButton = new QPushButton(TreeWidget);
         quitButton->setObjectName(QString::fromUtf8("quitButton"));
-        quitButton->setGeometry(QRect(1240, 480, 75, 31));
+        quitButton->setGeometry(QRect(1240, 440, 75, 31));
         insertValue = new QLineEdit(TreeWidget);
         insertValue->setObjectName(QString::fromUtf8("insertValue"));
         insertValue->setGeometry(QRect(1210, 60, 121, 21));
@@ -88,15 +88,15 @@ public:
         font.setPointSize(14);
         treeStatus->setFont(font);
         treeStatus->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
-        preorderButton = new QPushButton(TreeWidget);
-        preorderButton->setObjectName(QString::fromUtf8("preorderButton"));
-        preorderButton->setGeometry(QRect(1220, 350, 111, 23));
-        postorderButton = new QPushButton(TreeWidget);
-        postorderButton->setObjectName(QString::fromUtf8("postorderButton"));
-        postorderButton->setGeometry(QRect(1220, 390, 111, 23));
-        inorderButton = new QPushButton(TreeWidget);
-        inorderButton->setObjectName(QString::fromUtf8("inorderButton"));
-        inorderButton->setGeometry(QRect(1220, 430, 111, 23));
+        comboBox = new QComboBox(TreeWidget);
+        comboBox->addItem(QString());
+        comboBox->addItem(QString());
+        comboBox->addItem(QString());
+        comboBox->setObjectName(QString::fromUtf8("comboBox"));
+        comboBox->setGeometry(QRect(1220, 380, 121, 22));
+        label = new QLabel(TreeWidget);
+        label->setObjectName(QString::fromUtf8("label"));
+        label->setGeometry(QRect(1240, 350, 101, 21));
 
         retranslateUi(TreeWidget);
 
@@ -112,9 +112,11 @@ public:
         delayLabel->setText(QCoreApplication::translate("TreeWidget", "Delay = 1000 ms", nullptr));
         deleteButton->setText(QCoreApplication::translate("TreeWidget", "Delete", nullptr));
         treeStatus->setText(QCoreApplication::translate("TreeWidget", "Binary Search Tree", nullptr));
-        preorderButton->setText(QCoreApplication::translate("TreeWidget", "Preorder Traversal", nullptr));
-        postorderButton->setText(QCoreApplication::translate("TreeWidget", "Posrorder Traversal", nullptr));
-        inorderButton->setText(QCoreApplication::translate("TreeWidget", "Inorder Traversal", nullptr));
+        comboBox->setItemText(0, QCoreApplication::translate("TreeWidget", "Preorder Traversal", nullptr));
+        comboBox->setItemText(1, QCoreApplication::translate("TreeWidget", "Inorder Traversal", nullptr));
+        comboBox->setItemText(2, QCoreApplication::translate("TreeWidget", "Postorder Traversal", nullptr));
+
+        label->setText(QCoreApplication::translate("TreeWidget", "Tree Traversal", nullptr));
     } // retranslateUi
 
 };

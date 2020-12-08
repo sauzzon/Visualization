@@ -33,7 +33,7 @@
    <property name="geometry">
     <rect>
      <x>1240</x>
-     <y>480</y>
+     <y>440</y>
      <width>75</width>
      <height>31</height>
     </rect>
@@ -173,43 +173,42 @@
     <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
    </property>
   </widget>
-  <widget class="QPushButton" name="preorderButton">
+  <widget class="QComboBox" name="comboBox">
    <property name="geometry">
     <rect>
      <x>1220</x>
+     <y>380</y>
+     <width>121</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <item>
+    <property name="text">
+     <string>Preorder Traversal</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Inorder Traversal</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Postorder Traversal</string>
+    </property>
+   </item>
+  </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>1240</x>
      <y>350</y>
-     <width>111</width>
-     <height>23</height>
+     <width>101</width>
+     <height>21</height>
     </rect>
    </property>
    <property name="text">
-    <string>Preorder Traversal</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="postorderButton">
-   <property name="geometry">
-    <rect>
-     <x>1220</x>
-     <y>390</y>
-     <width>111</width>
-     <height>23</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Posrorder Traversal</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="inorderButton">
-   <property name="geometry">
-    <rect>
-     <x>1220</x>
-     <y>430</y>
-     <width>111</width>
-     <height>23</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Inorder Traversal</string>
+    <string>Tree Traversal</string>
    </property>
   </widget>
  </widget>
