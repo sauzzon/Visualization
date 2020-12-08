@@ -67,7 +67,7 @@ void TreeWidget::on_deleteButton_clicked()
 
 }
 
-void TreeWidget::on_comboBox_currentIndexChanged(int index)
+void TreeWidget::on_comboBox_activated(int index)
 {
     if(index==0)
         tree->preorderTraversal();
@@ -75,7 +75,4 @@ void TreeWidget::on_comboBox_currentIndexChanged(int index)
         tree->inorderTraversal();
     else if(index==2)
         tree->postorderTraversal();
-    else
-        return;
-
 }

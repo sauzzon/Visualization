@@ -262,17 +262,20 @@ BSTNode::BSTNode()
  {
      setTreeStatus("PREORDER TRAVERSAL");
      preorderTraversalHelper(root);
+     draw(0,false,true);
  }
  void BST::postorderTraversal()
  {
      setTreeStatus("POSTORDER TRAVERSAL");
      postorderTraversalHelper(root);
+     draw(0,false,true);
 
  }
  void BST::inorderTraversal()
  {
      setTreeStatus("INORDER TRAVERSAL");
      inorderTraversalHelper(root);
+     draw(0,false,true);
  }
  void BST::initializer(QGraphicsScene* mainScene,double width,double height,QLabel* status)
  {

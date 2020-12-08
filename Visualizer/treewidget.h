@@ -28,7 +28,7 @@ private slots:
 
     void on_deleteButton_clicked();
 
-    void on_comboBox_currentIndexChanged(int index);
+    void on_comboBox_activated(int index);
 
 private:
     Ui::TreeWidget *ui;
