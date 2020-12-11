@@ -283,14 +283,14 @@ BSTNode::BSTNode()
     treeSceneHeight=height;
     treeSceneWidth=width-50;
     treeStatus = status;
-    setDelay(0);
-    Insert(10);
-    Insert(5);
-    Insert(20);
-    Insert(4);
-    Insert(6);
-    Insert(25);
-    Insert(17);
+//    setDelay(0);
+//    Insert(10);
+//    Insert(5);
+//    Insert(20);
+//    Insert(4);
+//    Insert(6);
+//    Insert(25);
+//    Insert(17);
     setDelay(1000);
  }
 
